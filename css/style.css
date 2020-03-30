@@ -1,0 +1,1683 @@
+
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	color: #22242b;
+	font-weight: 600;
+   
+}
+
+h1 {
+	font-size: 70px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+body {
+    width: 100%;
+}
+head {
+    width: 10%;
+}
+
+p {
+	font-size: 14px;
+	color: #74757b;
+	line-height: 2;
+}
+
+
+
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+	outline: none;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+
+/*---------------------
+Helper CSS
+ -----------------------*/
+
+.section-title {
+	text-align: center;
+}
+
+.section-title h2 {
+	font-size: 36px;
+}
+
+.set-bg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+
+.spad {
+	padding-top: 102px;
+	padding-bottom: 102px;
+}
+
+.text-white h1,
+.text-white h2,
+.text-white h3,
+.text-white h4,
+.text-white h5,
+.text-white h6,
+.text-white p,
+.text-white span,
+.text-white li,
+.text-white a {
+	color: #fff;
+}
+
+/*---------------------
+Commom elements
+ -----------------------*/
+
+.elements-section {
+	padding-bottom: 0;
+}
+
+.element {
+	margin-bottom: 70px;
+}
+
+.element .el-title {
+	font-weight: 700;
+	margin-bottom: 60px;
+}
+
+/* buttons */
+
+.site-btn {
+	display: inline-block;
+	border: none;
+	font-size: 14px;
+	font-weight: 600;
+	min-width: 188px;
+	padding: 22px 35px;
+	border-radius: 50px;
+	text-transform: uppercase;
+	background: #f43f00;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+}
+
+.site-btn:hover {
+	color: #fff;
+}
+
+.site-btn.sb-dark {
+	background: #22242b;
+}
+
+.site-btn.sb-big {
+	min-width: 257px;
+}
+
+/* Accordion */
+
+.accordion-area .panel {
+	margin-bottom: 16px;
+}
+
+.accordion-area .panel-link:after {
+	content: "+";
+	position: absolute;
+	font-size: 18px;
+	font-weight: 700;
+	right: 32px;
+	top: 50%;
+	color: #000;
+	line-height: 16px;
+	margin-top: -8px;
+	margin-left: -4px;
+}
+
+.accordion-area .panel-header .panel-link.active {
+	background: #f43f00;
+	color: #fff;
+}
+
+.accordion-area .panel-header .panel-link.collapsed {
+	background: #ebf0f3;
+	color: #22242b;
+}
+
+.accordion-area .panel-header .panel-link.collapsed:after {
+	content: "+";
+	color: #1d1d1d;
+}
+
+.accordion-area .panel-link.active:after {
+	content: "-";
+	margin-top: -10px;
+	color: #fff;
+}
+
+.accordion-area .panel-link {
+	text-align: left;
+	border: none;
+	position: relative;
+	width: 100%;
+	padding: 21px 40px;
+	padding-right: 45px;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	border-radius: 60px;
+	color: #000;
+	cursor: pointer;
+	background: #ebf0f3;
+}
+
+.accordion-area .panel-body p {
+	margin-bottom: 0;
+	padding-top: 25px;
+}
+
+/* tab */
+
+.tab-element .nav-tabs {
+	border-bottom: none;
+}
+
+.tab-element .nav-tabs .nav-link {
+	border-radius: 0;
+	font-size: 14px;
+	font-weight: 700;
+	color: #1f1f1f;
+	border: none;
+	padding: 21px 48px;
+	margin-right: 6px;
+	border-radius: 70px;
+	background: #ebf0f3;
+	margin-bottom: 10px;
+}
+
+.tab-element .nav-tabs .nav-item:last-child .nav-link {
+	margin-right: 0;
+}
+
+.tab-element .nav-tabs .nav-link.active {
+	background: #f43f00;
+	color: #fff;
+}
+
+
+.tab-element .tab-pane p {
+	padding-top: 15px;
+}
+
+
+
+/* Milestones */
+
+.
+/* Icon Box */
+
+.icon-box-item {
+	margin-bottom: 30px;
+}
+
+.icon-box-item .ib-icon {
+	width: 76px;
+	height: 76px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	font-size: 39px;
+	color: red;
+	border: 3px solid red;
+	border-radius: 50%;
+	float: left;
+	margin-right: 20px;
+	-webkit-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.icon-box-item .ib-text {
+	overflow: hidden;
+	padding-top: 3px;
+    
+}
+
+.ib-text { width: 100%;}
+.icon-box-item .ib-text h5 {
+	margin-bottom: 15px;
+}
+
+.icon-box-item:hover .ib-icon {
+	background: red;
+	color: #fff;
+}
+.ib-icon{
+   margin-bottom:70%;
+}
+
+/* Preloder */
+
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	
+	background: #000;
+}
+
+.loader {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -13px;
+	margin-left: -13px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+@-webkit-keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+/*------------------
+vaste body's
+ ---------------------*/
+ .midden {
+    margin-top: 90px;
+}
+/*------------------
+einde vaste body's
+ ---------------------*/
+
+/*------------------
+begin navbar
+ ---------------------*/
+.header-section {
+	width: 100%;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.7);
+	z-index:999;
+    position: fixed;
+    background-color: black; }
+.header-nav {
+	text-align: center;
+    width: 100%;  
+}
+.dvp-logo  {
+    margin-left: 2%;
+    margin-top: 3px;
+    color:red;
+    font-size: 50px;
+    float: left;
+font-weight: bold; 
+width: 12%;
+}
+.dvp-logo:hover {
+color:white;
+}
+.main-menu {
+display: inline;
+width: 80%;   
+}
+.main-menu li {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+    height: 10%; 
+}
+.main-menu li a {
+	display: block;
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: 600;
+	padding: 33px 0 33px 0 ;  
+    
+    
+}
+.main-menu li a:hover, .main-menu li a.active { color: red;}
+.main-menu li:hover>.sub-menu {
+	visibility: visible;
+	opacity: 1;
+	margin-top: 0;
+}
+
+.main-menu li a.zwart-navbar:hover, .main-menu li a.zwart { color: black;}
+
+.main-menu .sub-menu {
+	position: absolute;
+	list-style: none;
+	width: 220px;
+	left: 0;
+	top: 100%;
+	text-align: left;
+	padding: 20px 0;
+	visibility: hidden;
+	opacity: 0;
+	margin-top: 50px;
+	background: #fff;
+	-webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	-webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.15);
+}
+.main-menu .sub-menu li {
+	display: block;
+}
+.main-menu .sub-menu li a {
+	display: block;
+	color: #000;
+	margin-left: 0;
+	padding: 5px 40px;
+}
+.main-menu .sub-menu li a:hover {
+	color: red;
+}
+.slicknav_menu {
+	display: none;
+}
+#margin-li{margin-left: 8%;
+background-color: red;
+
+}
+#margin-li a:hover{color: black;}
+
+
+#margin-li img {width:10%;}
+ 
+/* ----------------
+einde navbar 
+ ---------------------*/
+
+/* ----------------
+beheer navbar
+----------------------*/
+.beheer {
+display: inline;
+width: 80%;   
+}
+.beheer li {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+    height: 10%; 
+}
+.beheer li a {
+	display: block;
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: 600;
+	padding: 33px 0 33px 0 ;  
+    
+    
+}
+/* ----------------
+beheer navbar einde
+----------------------*/
+
+/* ----------------
+ start index
+ ---------------------*/
+
+/* ----------------
+ start Carosorel +tekst 
+ ---------------------*/
+.hero-section {
+	padding-top: 27.4%;
+	padding-bottom: 200px;
+    background-color:  rgba(0,0,0,.203);
+     border-bottom: 3px solid black;
+    margin-top: 80px;
+	position: relative;
+}
+
+.hero-section .container {
+	position: relative;
+}
+.hero-slider {
+	position: absolute;
+    border-right: 3px solid black;
+   
+	width: 50%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+.hero-slider .owl-stage-outer,
+.hero-slider .owl-stage,
+.hero-slider .owl-item,
+.hero-slider .hs-item {
+	height: 100%;
+}
+
+.hero-slider .owl-dots 
+{
+	position: absolute;
+	max-width: 1146px;
+	width: 100%;
+	bottom: 34px;
+	margin-left: 50%;
+}
+.hero-slider .owl-dots .owl-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 10px;
+	margin-right: 7px;
+	background: #fff;
+}
+.hero-slider .owl-dots .owl-dot:last-child {
+	margin-right: 0;
+}
+.hero-slider .owl-dots .owl-dot.active {
+	background: red;
+}
+.hero-form {
+	background: #22242b;
+	padding: 63px 42px 73px;
+}
+.hero-form input {
+	width: 100%;
+	height: 49px;
+	padding: 5px 26px;
+	margin-bottom: 30px;
+	border: none;
+	font-size: 14px;
+	color: #838383;
+	font-style: italic;
+}
+.hero-form p {
+	font-size: 11px;
+	font-style: italic;
+	margin-bottom: 25px;
+}
+.promotie-tekst {
+    
+    width: 50%;
+   
+    position: relative;
+    float: right;
+    color:white;
+    font-size: 20px;
+    margin-top: -25%;
+    padding-left: 7%;
+    max-height: 100%; 
+}
+.promotie-tekst li {
+    margin-bottom: 1%;
+    font-size: 23px;
+    color:black;
+    font-weight: bold;
+    font-family: monospace;
+    border-style: none;
+    padding-top: 3%;
+    list-style: none;
+  
+}
+.promotie-tekst img {
+  height: 32px;
+    MARGIN-TOP: 3%;
+    float: left;
+  
+}
+.promotie-tekst h4 {
+    color:white;
+    margin-bottom: 1%;
+    font-size: 26px;
+    font-family: monospace;
+}
+
+
+/* ----------------
+einde carosorel +tekst 
+ ---------------------*/
+
+ /* ----------------
+einde index
+ ---------------------*/
+
+
+
+.info-section {
+	padding-bottom: 90px;
+}
+
+.info-text {
+	padding-top: 30px;
+}
+
+.info-text h2 {
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+
+.info-text h5 {
+	margin-bottom: 35px;
+	color: #76787f;
+}
+
+.info-text p {
+	margin-bottom: 40px;
+}
+
+.info-text ul {
+	list-style: none;
+}
+
+.info-text ul li {
+	font-size: 30px;
+	font-weight: 700;
+	color: #f43f00;
+	margin-bottom: 10px;
+}
+.keuze-box {
+    width:40%;
+    float:left;
+    margin-left: 10%;
+}
+.onder-index{float: left;
+    margin-left: 10%;
+    margin-bottom: 1%;
+    margin-top: 3%;
+    width: 80%;
+    margin-right: 0px;
+    max-width: none;
+}
+.onder-index-grid{
+    width:80%;
+    margin-left: 10%;
+    float:left;
+}
+
+
+
+
+/* ----------------
+Footer 
+ ---------------------*/
+
+.footer-section {
+	padding: 20px 0 0;
+	background: #22242b;
+    clear: both;
+    
+}
+
+
+.footer-widget ul li a {
+	display: inline-block;
+	font-size: 14px;
+	color: #ffffff;
+	margin-bottom: 15px;
+}
+
+.copyright {
+    
+	color: #74757b;
+	font-size: 14px;
+	padding-bottom: 20px;
+    clear: both;
+   
+}
+
+/* ----------------
+ start  Footer 
+ ---------------------*/
+
+/* ----------------
+start products
+ ---------------------*/
+
+/*------------------
+omranding producten
+ ---------------------*/
+.lijn {
+    margin-top: 100px;
+    border:1px solid rgba(0,0,0,.525);
+        float:left;
+    margin-bottom: 100px;
+    width: 90%;
+    margin-left: 5%;
+    background-color:  rgba(0,0,0,.03);
+    border-radius: 0.5em;
+}
+.lijn-titel{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    clear:both;
+        background-color: rgba(0,0,0,.06) ;
+    width: 100%;
+        
+}
+.lijn-titel h2{
+ text-align: center;
+    font-weight: 500;
+   
+}
+/*------------------
+ einde omranding producten
+ ---------------------*/
+/*------------------
+start box producten
+ ---------------------*/
+.box {
+    margin-top: 5%;
+    margin-bottom:5%;
+    margin-left:6.5%;
+    transition-property:all;
+    transition-duration: 0s;
+    float: left;
+    width: 25%;
+    border: 1px solid rgba(0,0,0,.301);
+    background-color: white;
+}
+.box img {
+
+    width: 100%;
+    height: 30%;
+}
+.box p {
+line-height: 1;
+font-size: 15px;
+}
+
+
+.box-beschrijving {
+height: 180px;
+}
+.box-beschrijving h3,.box-beschrijving p {
+
+text-align: center;
+background-color: white; 
+}
+.box-beschrijving h2 {
+background-color: white; 
+}
+.box:hover {
+transform:scale(1.05);  
+}
+
+
+/*------------------
+einde box producten
+ ---------------------*/
+
+
+
+/*------------------
+begin contact pagina 
+ ---------------------*/
+
+
+
+
+.midden-contact {
+    margin-top: 100px;
+}
+
+
+button#vraagbutton{
+ border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    width: 90%;
+    text-align: left;
+    margin-left: 5%;
+    font-weight: bold;
+    font-size: 20px;
+}
+.antwoord {
+    margin-left: 5.5%; 
+    font-size: 20px; 
+    width: 90%;
+}
+.vraagtitel{
+    text-align: center; 
+    margin-bottom: 5%; 
+    font-family: monospace;
+}
+span#grijs{
+    color: rgba(0,0,0,.203);
+}
+.vraageinde{
+    text-align: center; 
+    font-size: 10px;
+    margin-top: 5%; 
+    margin-bottom: 1%;
+    font-family: monospace;
+}
+.vraagtitel h2{
+    font-size: 40px;
+}
+.vraagtitel h3{
+    font-size: 22px;
+}
+.vraageinde h3{
+    font-size: 20px;
+}
+
+/*------------------
+einde contact pagina 
+ ---------------------*/
+
+/*------------------
+start inlog pagina
+ ---------------------*/
+.inlog form button {
+    width: 60%;
+  height: 50px;
+    margin-top: 20px;
+    color:white;
+    background-color: red;
+    border-radius: 1em; 
+     
+}
+
+table {margin-left: 5px;}
+.inlog td input   {;
+  width: 100%;   
+}
+.inlog td    {;   
+}
+
+.login-tabel   {
+width: 90%;
+float: left;
+margin-left: 10%;
+ clear: right;
+    
+}
+.login-tabel  table {
+    width: 100%;
+ 
+}
+.login-tabel  tr {
+    width: 100%;   
+}
+.login-tabel  td , .login-tabel  th {
+    width: 50%;  
+    
+    padding-bottom: 8px;
+   
+}
+.login-tabel h4 {
+    font-size: 15px;
+}
+.login-tabel h5 {
+    font-size: 12px;
+}
+
+.inlog form td label{width: 100%;
+        font-size: 30px;
+    text-align: right;
+}
+
+.inlog form {
+    margin-left: 10%;
+    float:left;
+    background-color: white;
+    width: 50%;
+   margin-left: 40%;
+ 
+  
+}
+.inlog table {
+  width: 60%;
+}
+.aside {
+    margin-left: 5%;
+    height: auto;
+    width: 30%;
+    float:left; 
+    border:1px solid black;
+    border-radius: 0.8em;
+    color: black; 
+}
+.aside ul { width: 80%;  list-style: none; margin-left: 10%; }
+.aside li { width: 100%; color:black; text-align: center; border-top:1px solid black;  height: auto; display: block; padding: 5;
+}
+.aside-titel{height: auto; text-align: center; padding: 5;}
+.aside li:hover{
+    background-color: red;
+}
+form h2 {color: black;
+}
+
+.login-div{float:left; width:60%;}
+.form{margin-left: 25%;}
+
+.zin{margin-left:2%; margin-right:13%; float:left; }
+.zin-2{float:left;}
+.popop-titel{width: 100%; border-bottom:1px solid rgba(0,0,0,.18);}
+.popop-titel h2{margin-bottom:10px;  margin-top: 10px; font-size: 22px;  padding-left: 10px; }
+.popup-midden p{padding: 10px; margin-bottom: 0;     line-height: 1.1;}
+.popup-midden{border-bottom:1px solid rgba(0,0,0,.18); margin-bottom: 5px;}
+.popup-footer button{width: 30%;  }
+.zwart {width: 30%; height:40px; color:white; margin:3% 0 2% 5%; background-color: black; }
+.rood{width: 30%; height:40px; color:white; float: right; margin:3% 5% 2% 0; background-color: red; }
+
+.margin-inlog-knop{margin-left: 35%; width: 30%;}
+
+/*------------------
+einde inlog pagina
+ ---------------------*/
+
+
+/*------------------
+begin merch 
+ ---------------------*/
+
+.product-box{
+border:1px solid gray;
+width: 30%;
+margin-left: 3%;
+height: 60%;
+float: left;
+border-radius: 0.5em;
+}
+
+
+.product-box img {
+margin-top: 5%;
+margin-bottom: 5%;
+width: 80%;
+height: 65%;
+clear: both;
+margin-left: 10%;
+}
+
+.titel-product-box{height: 12%;
+}
+.titel-product-box p{
+clear:both;
+color:black;
+text-align: center;
+font-size: 100%;
+font-weight: bold;
+clear: both;
+margin:  0 0 0 0;
+}
+
+img.my-webshop-img {
+max-height: 200px;
+max-width:  200px;
+
+margin-left: auto;
+margin-right: auto;
+margin-top: 10px;
+}
+
+.product-grid img{
+    width:40%;
+    height: 500px;
+    margin-right: 2.5%;
+     margin-left: 2.5%;
+    
+    float:left;
+   
+  
+}
+
+.Merch-TextBox {
+width: 54%;
+height: 500px;
+background-color:white;
+float: left;
+ border-left:1px solid rgba(0,0,0,.201);
+
+
+margin-top: 2%;
+}
+.Merch-Textbox-titel{
+    height: 25%;
+    
+}
+.Merch-Textbox-titel h2{
+  padding: 0px;
+    font-size: 35px;
+    padding-bottom: 10px;
+    margin-left: 3%;
+     font-family: monospace;
+}
+
+.Merch-Textbox-titel h3{
+        padding-top: 2%;
+  
+    font-size: 25px;
+    color:red;
+    margin-left: 3%;
+}
+.Merch-Textbox-Midden{
+    height: 50%;
+    
+}
+.Merch-Textbox hr {color:rgba(0,0,0,.201); width: 80%; margin-left: 10%; clear: both; }
+
+.Merch-Textbox-Midden h3{
+   font-size: 20px;
+    color: lightgrey;
+    clear:both;
+    margin-left: 3%;
+    padding-bottom: 3%;
+   
+    
+}
+.Merch-Textbox-Midden h5{
+   font-size: 20px;
+   margin-left: 3%;
+    padding-bottom: 3%;
+     padding-top: 3%;
+}
+.Merch-Textbox-Midden button{
+   width: 15%;
+    margin-left: 3%;
+    float:left;
+    border: 1px solid lightgray;
+    height: 35px;
+    margin-bottom: 5%;
+}
+.Merch-Textbox-einde{
+    height: 25%;
+}
+
+.Merch-Textbox-einde a{
+    width: 40%;
+    margin-left: 10%;
+    font-size: 15px;
+    color:white;
+   padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 5%;
+    float:left;
+}
+.Merch-Textbox-einde button{
+        border-radius: .2rem;
+    width: 40%;
+    margin-left: 10%;
+    font-size: 15px;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: black;
+    margin-top: 5%;
+    border: none;
+    float: left;
+}
+.Merch-Textbox-einde form{float: left;
+    width: 100%;}
+
+.product-grid{
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    background-color: white;
+    margin-top: 2%;
+}
+img#winkelkar {
+        height: 30px;
+    width: 20px;
+}
+
+
+
+
+
+@media (min-width: 576px) { 
+img.my-webshop-img {
+max-height: 100px;
+max-width:  100px;
+}
+}
+
+@media (min-width: 990px) { 
+img.my-webshop-img {
+max-height: 250px;
+max-width:  250px;
+}
+}
+
+
+.prijs-product-box{ height: 14%; width:100%; justify-content: space-between!important;display: flex!important; 
+}
+
+.prijs-product-box h3{      
+    display: inline-block;
+    color: #fff;
+    background-color: #343a40;
+   padding: 1% 1% 1% 1%;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    border-radius: .25rem;
+    
+      height: 50%;
+    margin-left: 5%;  
+}
+    .prijs-product-box button{
+    float: right;
+        border: 1px solid black;
+      background-color: #343a40;
+        border-radius: 0.5em;   
+        height: 50%;
+        width: 10%;
+        margin-right: 5%;    
+}
+.prijs-product-box button img{
+    height: 50%;
+    width: 70%;
+    float: left;
+}
+/*------------------
+einde merch 
+ ---------------------*/
+
+/*------------------
+begin winkelkar 
+ ---------------------*/
+
+#winkelkartitel {
+    text-align: center;
+  
+    margin-bottom: 5%;
+   
+}
+td#foto-td{width: 5%;}
+    td#naam-td{width: 20%}
+.winkelkar table  {width: 64%; margin-left: 1%; float: left; margin-top: 1%;}
+.winkelkar table th{border-bottom:1px solid rgba(0,0,0, 0.05); width: 13.5%; font-size: 20px; padding-bottom: 1%; }
+.totaalwinkelkar {width: 35%; float: left;  background-color: rgba(0,0,0,.03); height: 100%; }
+.totaalwinkelkar h2 { font-family: sans-serif; font-size: 22px; margin: 10% 0 5% 0; }
+.totaalwinkelkar-grid{width: 80%; margin-left:10%; }
+.totaalwinkelkar table{width: 100%; ;margin: 0 0 0 0;}
+.totaalwinkelkar button{width: 100%; ; background-color: red; color: white; text-align: center; height: 10%; margin-top: 5%; font-size: 15px;}
+.totaalwinkelkar tr {border-bottom: 1px solid lightgray; height: 40;}
+.totaalwinkelkar td{text-align: left; font-size: 17px; width: 70%;}
+.totaalwinkelkar th{text-align: left; font-size: 17px; width: 30%;}
+
+
+#Productkolomgroter{width: 20%;}
+.winkelkar td{ 
+    text-align: left; font-size: 20px;  border-bottom:1px solid rgba(0,0,0, 0.05); width: 13.5%; height: 25%;  padding-top: 1%;
+}
+.winkelkar td img {width: 80.5px; height: 100px;  float: left; }
+.winkelkar td p {
+ color:black; font-size:   100%;  margin-top: 5.5%; float: left; margin-left: 2%;
+}
+.winkelkar h4 { text-align: center; margin: 2% 0 2% 0;
+}
+
+.promotabel  img {width: 50%; height: 189px;  float: left; transition-duration: 0s; }
+.promotabel img:hover {transform: scale(1.1);}
+.winkelkar-rodebutton {
+    border: 1px solid red;
+    color: white;
+    background-color: red;
+     border-radius: 0.1rem;
+    text-align: center;
+    width: 5px;
+        height: 5px;
+}
+.winkelkar-rodebutton:hover {
+    color: black;
+}
+.winkelkar-zwartbutton:hover { color:red;}
+.winkelkar-zwartbutton {
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+    border-radius: 0.1rem;
+  
+    text-align: center;
+    width: 5px;
+    height: 5px;
+}
+.winkel-leeg{
+    width: 40%;
+    background-color:red;
+    color:white;
+    font-size: 16px;
+    border:1px solid red;
+    border-radius: 0.5rem;
+    margin-left: 30%;
+    height: 15%;
+    margin-top: 10%;   
+}
+.winkel-leeg-titel{height: 50%; font-size: 22px; padding-left: 1%; padding: 1% 0 1% 0}
+.winkel-leeg hr{margin: 2% 0 0 0;}
+
+.winkel-leeg-einde{height: 50%; padding-left: 1%;padding-top: 3%;  font-size: 20px; }
+
+td#kleiner-td{width: 3%;}
+.vet{font-weight: bold;}
+/*------------------
+einde winkel 
+ ---------------------*/
+.links {float: left;
+width: 100%;}
+
+#beneden {
+    margin-top: 50%;
+}
+
+
+
+/*------------------
+begin error 
+ ---------------------*/
+.error{
+      color: white;
+    background-color: red;
+    border-color: red;
+    margin-top: 2%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+
+/*------------------
+einde error 
+ ---------------------*/
+
+/*------------------
+checkout 
+ ---------------------*/
+
+.checkout-li table {width: 95%; margin-left: 2.5%; margin-right: 2.5%;}
+.checkout-li td {width: 90%; padding: 2.5% 0% 2.5% 0%;  }
+.checkout-li th {width: 10%; padding: 2.5% 0% 2.5% 0%;}
+
+
+
+/*------------------
+ einde checkout 
+ ---------------------*/
+
+
+@media only screen and (min-width: 1400px) {
+	.box p {
+ 
+    font-size: 18px;
+}
+}
+
+/* Medium screen : 992px. */
+
+@media only screen and (min-width: 1026px) and (max-width: 1199px) {
+	
+	.score-section .hand-img {
+		right: 0;
+	}
+	.hero-slider .owl-dots {
+		max-width: 930px;
+		left: calc(50% - 465px);
+	}
+    .zin{margin-right: 3%;}
+        .Merch-Textbox-titel h2{
+  padding: 0px;
+    font-size: 28px;
+    padding-bottom: 10px;
+    margin-left: 3%;
+     font-family: monospace;
+}
+
+.Merch-Textbox-titel h3{
+        padding-top: 2%;
+  
+    font-size: 17px;
+    color:red;
+    margin-left: 3%;
+}
+    .Merch-Textbox-titel{height:19%;}
+  
+}
+/* Tablet :768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 1025px) {
+	
+	.main-menu li a {
+	font-size: 16px; 
+}
+	.hero-slider .owl-dots {
+		max-width: 690px;
+	
+	}
+	.hs-text {
+		margin-bottom: 50px;
+		padding-top: 0;
+	}
+	.icon-box-item .ib-icon {
+		float: none;
+		margin-bottom: 20px;
+	}
+	.score-section .hand-img {
+		display: none;
+	}
+	.sidebar {
+		padding-top: 50px;
+	}
+        .promotie-tekst {  font-size: 10px; }
+    .promotie-tekst li {
+    margin-bottom: 1%;
+    font-size: 15px;
+    color:black;
+    font-weight: bold;
+}
+.promotie-tekst h4 {
+    color:white;
+    margin-bottom: 1%;
+    font-size: 17px;
+   
+}
+    .box{ width:40%;}
+    .box img {
+    width: 100%;
+    height: 250px;
+}
+    .box-beschrijving p {
+    text-align: center;
+    background-color: white;
+   
+    font-size: 15;
+}
+    .promotie-tekst h4 {font-size: 20px;}
+    .promotie-tekst img {height: 22px;}
+    .promotie-tekst li {font-size: 18px;}
+    .lettergroote{font-size: 18px;}
+     .box:hover{transform: none;}
+    .zin-2{float:none; margin-left: 3%;}
+    .zin{float:none; margin-left: 3%; }
+   
+    .winkelkar td img {
+   width: 80.5px;
+    height: 100px;
+}
+    .winkelkar td {
+    width: 5.5%;
+    padding: 20 0 20 0;
+    FONT-SIZE: 16px;
+}
+    .winkelkar table th {
+    font-size: 16px;
+}
+    .winkelkar table {
+    width: 65%;
+    margin-left: 0;
+}
+    .totaalwinkelkar button {
+    width: 100%;
+    height: 80px;
+}
+    .promotabel  img {width: 80%; height: 189px; margin-left: 10%; float: none; transform: none;}
+    .promotabel  img:hover {transform: none;}
+    .Merch-Textbox-titel h2{
+  padding: 0px;
+    font-size: 25px;
+    padding-bottom: 10px;
+    margin-left: 3%;
+     font-family: monospace;
+}
+
+.Merch-Textbox-titel h3{
+        padding-top: 2%;
+  
+    font-size: 15px;
+    color:red;
+    margin-left: 3%;
+}
+    .Merch-Textbox-Midden h5{
+   font-size: 15px;
+   
+}
+     .Merch-Textbox-titel{height:15%;}
+       .Merch-TextBox {height: 400px;}
+    .Merch-Textbox-titel h2 {font-size: 20px;}
+    .Merch-Textbox-titel h3 {font-size: 20px;}
+    .Merch-Textbox-titel {height: 20%;}
+    .Merch-Textbox-Midden {height: 55%;}
+    .Merch-Textbox-Midden h5 {font-size: 18px;}
+    .Merch-Textbox-Midden button {margin-bottom: 5%;}
+    .product-grid img {height: 400px;  }
+   .winkel-leeg {width: 60%;font-size: 16px;margin-left: 20%;margin-top: 20%;}
+    
+    .winkel-leeg-einde {font-size: 16px}
+     .keuze-box {width:70%; margin-left:15%;}
+    .icon-box-item .ib-text h5 {text-align: center;margin-bottom: 15px;}
+    .icon-box-item .ib-icon{float: none; margin-bottom: 20px; margin-left: 42%;}
+    .onder-index-midden-text{text-align: center;}
+}
+
+
+/* Large Mobile :480px. */
+
+@media only screen and (max-width: 767px) {
+	.header-section {
+		overflow: hidden;
+		padding: 0 25px;
+	}
+	.main-menu {
+		display: none;
+       
+        
+	}
+	.slicknav_menu {
+		padding: 0;
+		display: block;
+		background: transparent;
+	}
+	.slicknav_btn {
+		background: #616161;
+		margin-top: 29px;
+	}
+	.slicknav_nav {
+		background: #22242b;
+		margin-bottom: 30px;
+	}
+	.slicknav_nav a {
+		margin: 0;
+		padding: 10px 20px;
+		border-bottom: 1px solid #111;
+	}
+	.slicknav_nav a:hover {
+		color: red;
+		border-radius: 0;
+		background: #0b0e25;
+	}
+	.slicknav_nav .slicknav_row {
+		padding: 10px 20px;
+		margin: 0;
+	}
+	.slicknav_nav .slicknav_row:hover {
+		border-radius: 0;
+		background: #0b0e25;
+	}
+	.slicknav_parent:hover {
+		background: #22242b;
+		color: red;
+	}
+	.header-right {
+		display: none;
+	}
+	.hero-slider .owl-dots {
+		left: 0;
+		padding: 0 15px;
+	margin-left: 35%;
+	}
+	
+        .box {
+margin-bottom:8%;
+  margin-left:5%;
+     
+    width: 90%;
+
+    } 
+    .box:hover {
+ transform:none; 
+}
+    .box img{
+        height: 300px;
+    }
+    .box p {font-size: 16px;}
+    .contact-kolom li {
+    margin-left: 10%;
+    margin-top: -1%;
+    margin-bottom: -1%;
+}
+    
+    .keuze-box {width:70%; margin-left:15%;}
+    .icon-box-item .ib-text h5 {text-align: center;margin-bottom: 15px;}
+    .icon-box-item .ib-icon{float: none; margin-bottom: 20px; margin-left: 38%;}
+    .onder-index-midden-text{text-align: center;}
+    
+    
+ 
+    
+ .promotie-tekst h4 {font-size: 15px;}
+    .promotie-tekst img {height: 13px;}
+    .promotie-tekst li {font-size: 13px;}
+    .lettergroote{font-size: 13px;}
+   
+    .hero-section {
+    margin-top: 75px;
+    
+}
+    .li-foto{background-color: red;}
+    
+    .li-foto img{width: 3%; margin-right:1%; 
+}
+ form button {
+    width: 100%;
+}
+
+
+  .aside{ width: 25%;}
+    .aside li { font-size: small ;}
+    .login-tabel td, .login-tabel th {font-size: small; width: auto;}
+    .login-tabel {  width: 100%; margin-left: 3%; }
+    
+    
+    .form{margin-left: 0;}
+    .zin-2{float:none; margin-left: 3%;}
+    .zin{float:none; margin-left: 3%; }
+    
+     .winkelkar table  {width: 100%;}
+    .totaalwinkelkar {width: 100%; float: left;  background-color: rgba(0,0,0,.03); height: ; margin-top: 10%; }
+    .winkelkar td img{width: 60; height: 80px; margin-left: 20%;}
+    .winkelkar td{ text-align: left; font-size: 12px;   width: 10%; height: 10%; }
+    .winkelkar table th {font-size: 13px;}
+    td#foto-td{width: 20%;}
+    td#naam-td{width: 30%}
+    .winkelkar tr{border-bottom:1px solid rgba(0,0,0, 0.05);}
+    .winkelkar table{margin-left: 0px;}
+    .midden {
+    margin-top: 110px;}
+    .promotabel  img:hover {transform: none;}
+    .promotie-tekst img {height: 15px;}
+    
+    .product-grid img {height: 400px; width: 80%; margin-left: 10%;}
+    .Merch-TextBox {width: 80%;MARGIN-LEFT: 10%;height: 500px;border-top: 1px solid rgba(0,0,0,.201);margin-top: 2%; border-left: none;}
+    .Merch-Textbox-titel h2 {font-size: 20px;}
+    .Merch-Textbox-titel {height: 20%;}
+    .Merch-Textbox-Midden {height: 40%;}
+    .Merch-Textbox-Midden h5 {font-size: 15px;}
+    .margin-inlog-knop{margin-left: 25%; width: 50%;}
+ .winkel-leeg {width: 80%;font-size: 16px;margin-left: 10%;margin-top: 20%;}
+    .winkel-leeg-titel {font-size: 21px;}
+    .winkel-leeg-einde {font-size: 16px}
+
+
+
+}
+
+     
+/* Small Mobile :320px. */
+
+@media only screen and (max-width: 479px) {
+	.header-section {
+		padding: 0 15px;
+	}
+	.loans-calculator {
+		padding: 50px 15px;
+	}
+	.loans-calculator p {
+		padding-right: 0;
+	}
+	.score-section h2,
+	.hs-text h2,
+	.cta-section h2 {
+		font-size: 36px;
+	}
+	.hero-form {
+		padding: 40px 20px 50px;
+	}
+	.icon-box-item .ib-icon {
+		float: none;
+		margin-bottom: 20px;
+	}
+	.site-btn.sb-big {
+		min-width: auto;
+	}
+	.info-text ul li {
+		font-size: 16px;
+	}
+	.loans-text ul {
+		padding-left: 0;
+	}
+    .keuze-box {
+    width:70%;
+}
+    .keuze-box {width:70%; margin-left:15%;}
+    .icon-box-item .ib-text h5 {text-align: center;margin-bottom: 15px;}
+    .icon-box-item .ib-icon{float: none; margin-bottom: 20px; margin-left: 30%;}
+    .onder-index-midden-text{text-align: center;}
+    
+    .rij {
+    
+   display: none;
+}
+
+    .box {
+margin-bottom:8%;
+  margin-left:5%;
+    width: 90%;
+}
+     .aside{ width: 25%;}
+    .aside li { font-size: small ;}
+    .login-tabel td, .login-tabel th {font-size: small; width: auto;}
+    .login-tabel {  width: 100%; margin-left: 3%; }
+ 
+      
+    zin{margin-left:3%; margin-right:0; }
+    zin-2{float:none; margin-left: 3%;}
+    button#loginknop{width:100px; margin-left: -50px;}
+    
+    .winkelkar table  {width: 100%;}
+    .totaalwinkelkar {width: 100%; float: left;  background-color: rgba(0,0,0,.03); height: ; margin-top: 10%; }
+    .winkelkar td img{width: 0px; height: 0px;}
+    .winkelkar td{ text-align: left; font-size: 12px;   width: 10%; height: 10%; padding-bottom: 5%; padding-top: 5%;}
+    td#foto-td{width: 1%;}
+    td#naam-td{width: 30%}
+    .winkelkar tr{border-bottom:1px solid rgba(0,0,0, 0.05);}
+    .winkelkar table{margin-left: 0px;}
+     .midden {
+    margin-top: 80px;}
+    .promotabel  img:hover {transform: none;}
+    .kolomklein{width:90%;}
+    .promotie-tekst img {height: 15px;}
+    .formknop{padding-right: 0px;}
+    
+      .product-grid img {height: 300px; width: 80%; margin-left: 10%;}
+    .Merch-TextBox {width: 80%;MARGIN-LEFT: 10%;height: 500px;border-top: 1px solid rgba(0,0,0,.201);margin-top: 2%; border-left: none;}
+    .Merch-Textbox-titel h2 {font-size: 15px;}
+    .Merch-Textbox-titel h3 {font-size: 15px;}
+    .Merch-Textbox-titel {height: 20%;}
+    .Merch-Textbox-Midden {height: 40%;}
+    .Merch-Textbox-Midden h5 {font-size: 12px;}
+    .Merch-Textbox-Midden h3 {font-size: 12px;}
+    .Merch-Textbox-einde a {font-size: 10px;}
+    .Merch-Textbox{height: 400px;}
+    .Merch-Textbox-Midden button {FONT-SIZE: 12px;height: 25px;}
+    .Merch-Textbox-einde button{font-size: 10px;}
+ 
+     .promotie-tekst h4 {font-size: 12px;}
+    .promotie-tekst img {height: 9px;}
+    .promotie-tekst li {font-size: 9px;}
+    .lettergroote{font-size: 9px;}
+    .box img {height: 200px;}
+ .margin-inlog-knop{margin-left: 25%; width: 50%;}
+    .winkel-leeg {width: 80%;font-size: 16px;margin-left: 10%;margin-top: 30%;}
+    .winkel-leeg-titel {font-size: 20px;}
+    .winkel-leeg-einde {font-size: 15px}
+}
+
+.categorielijst, .klantenlijst {
+	margin-top: 100px;
+}
+
+/*.datumveldkredietkaart {*/
+/*	width: 210px;*/
+/*}*/
