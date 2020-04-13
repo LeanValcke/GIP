@@ -61,7 +61,7 @@ $merchproducten =$dbh->query($sql);?>
         <div class="btn-group">
             
         <a class="btn btn-warning btn-sm" role="button" style="background-color:red; border:none;" href="<?php echo SITE_URL; ?>/Winkelkar/toevoegen.php?ProductID=<?php echo $Merch["ProductID"] ?>" >
-        <i><img id="shoppinglogo" src="../img/Navbar/winkelkarretje.png"  height="20px" width="20px"></i>
+        <i><img id="shoppinglogo" src="/img/Navbar/winkelkarretje.png"  height="20px" width="20px"></i>
         </a>
             
         </div>                    

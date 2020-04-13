@@ -8,7 +8,7 @@
             </li>
             <li id="margin-li">
                 <div class="li-foto">
-                    <a class="<?php if ($page=='winkelkar'){echo 'zwart-navbar';}?>"href="<?php echo SITE_URL; ?>/Winkelkar/winkelkar.php"> <img src="<?php echo SITE_URL; ?>/img/Navbar/winkelkarretje.png">Winkelmand</a>
+                    <a class="<?php if ($page=='winkelkar'){echo 'zwart-navbar';}?>"href="<?php echo SITE_URL; ?>/winkelkar/winkelkar.php"> <img src="<?php echo SITE_URL; ?>/img/Navbar/winkelkarretje.png">Winkelmand</a>
                 </div>
             </li>
 
