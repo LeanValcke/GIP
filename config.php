@@ -3,7 +3,7 @@
 // PROJECT CONSTANTEN
 // ******************
 
-
+//
 // Locatie vd bestanden
 // --------------------
 // zie ook: https://www.php.net/manual/en/function.pathinfo.php
