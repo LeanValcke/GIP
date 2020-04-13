@@ -21,7 +21,9 @@ $protocol = $_SERVER['PROTOCOL'] = isset($_SERVER['HTTPS']) && !empty($_SERVER['
 //var_dump($protocol);
 //die();
 
-define( 'SITE_URL', $protocol.'://'.$host.'/GIP7' );
+
+define( 'URL_SUBFOLDER', ''); //  Vul hier in de plaats '/GIP7' in, postfix wordt dan overal gelijk gebruikt in je project door PHP constante URL_SUBFOLDER
+define( 'SITE_URL', $protocol.'://'.$host.URL_SUBFOLDER );
 
 // = de url die we moeten ingeven in de browser om op deze website uit te komen
 
@@ -44,7 +46,6 @@ if( $_SESSION['LOGIN_OK'] == false) { $_SESSION['LOGIN_USERNAME'] = ''; $_SESSIO
 
 }
 if( !isset($_SESSION['WINKELKAR']) ) { $_SESSION['WINKELKAR'] = array(); }
-
 
 
 require('databank.php');
