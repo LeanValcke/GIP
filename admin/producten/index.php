@@ -4,6 +4,7 @@
 //connectie
 $sql = "SELECT ProductID, ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving FROM tblproduct";
 $productlijst = $dbh->query($sql);
+
 ?>
 
 
@@ -70,11 +71,11 @@ $productlijst = $dbh->query($sql);
             <td><?php echo $product['Gamenaam']; ?></td>
             <td><?php echo $product['Merchnaam']; ?></td>
             <td><?php echo $product['GameID']; ?></td>
-            <td><img src="/GIP7/img/<?php echo $product['foto']; ?>" alt="<?php echo $product['foto']; ?>" height="62" width="62"></td>
+            <td><img src="<?php echo URL_SUBFOLDER; ?>/img/<?php echo $product['foto']; ?>" alt="<?php echo $product['foto']; ?>" height="62" width="62"></td>
             <td><?php echo $product['Beschrijving']; ?></td>
-            <button><a href=delete.php?id=".$product['ProductID'].">DELETE</a></button>
-        
-        }
+            <td><button><a href=delete.php?id=<?php echo $product['ProductID'] ?>>DELETE</a></button></td>
+
+        <?php } ?>
         ?>
         
       </table>
