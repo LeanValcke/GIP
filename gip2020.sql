@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2020 at 11:52 PM
+-- Generation Time: Apr 14, 2020 at 01:55 PM
 -- Server version: 5.7.29-0ubuntu0.18.04.1
 -- PHP Version: 7.4.4
 
@@ -30,16 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblbestelbons` (
   `id` int(11) NOT NULL,
   `tblklant_KlantID` int(11) NOT NULL,
-  `besteldatum` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `besteldatum` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblbestelbons`
 --
 
-INSERT INTO `tblbestelbons` (`id`, `tblklant_KlantID`, `besteldatum`) VALUES
-(1, 8, '2020-04-13 23:39:32'),
-(2, 2, '2020-04-13 23:39:32');
+INSERT INTO `tblbestelbons` (`id`, `tblklant_KlantID`, `besteldatum`, `status`) VALUES
+(1, 8, '2020-04-13 23:39:32', 1),
+(2, 2, '2020-04-13 23:39:32', 2);
 
 -- --------------------------------------------------------
 
@@ -92,6 +93,28 @@ CREATE TABLE `tblbestellingproduct` (
   `Merchnaam` varchar(255) DEFAULT NULL,
   `Prijs` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblbestelstatus`
+--
+
+CREATE TABLE `tblbestelstatus` (
+  `id` int(11) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblbestelstatus`
+--
+
+INSERT INTO `tblbestelstatus` (`id`, `status`) VALUES
+(1, 'Nieuw'),
+(2, 'In behandeling'),
+(3, 'Voltooid'),
+(4, 'Geannuleerd'),
+(5, 'Onbekend');
 
 -- --------------------------------------------------------
 
@@ -300,6 +323,12 @@ ALTER TABLE `tblbestellingproduct`
   ADD KEY `Product` (`ProductID`);
 
 --
+-- Indexes for table `tblbestelstatus`
+--
+ALTER TABLE `tblbestelstatus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tblgameafdeling`
 --
 ALTER TABLE `tblgameafdeling`
@@ -338,6 +367,12 @@ ALTER TABLE `tblbestelbons`
 --
 ALTER TABLE `tblbestelbons_tblproduct`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `tblbestelstatus`
+--
+ALTER TABLE `tblbestelstatus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tblgameafdeling`
