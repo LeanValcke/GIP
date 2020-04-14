@@ -1,6 +1,15 @@
 <?php require('../config.php');
-$sql = "SELECT BonID, KlantID, Datum FROM tblbestelling";	
-$dbh->query($sql);?>
+
+$ingelogdeKlantId = $_SESSION['KlantID'];
+
+$sql = "SELECT tblbestelbons.id, tblbestelbons.tblklant_KlantID, tblbestelbons.besteldatum, tblbestelstatus.status FROM tblbestelbons
+INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
+WHERE tblbestelbons.tblklant_KlantID = $ingelogdeKlantId";	
+$result = $dbh->query($sql);
+
+var_dump($result->fetchAll());
+die();
+?>
 
 <html>
     <head>
