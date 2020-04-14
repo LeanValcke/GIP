@@ -5,9 +5,11 @@ require_once '../../databank.php';
 
 //connectie
 // Bestelbon nummer, Klanten nummer, Klanten naam, besteldatum en manueel klikbare link naar bestelling details maken
-$sql = "SELECT id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum FROM tblbestelbons INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID";
+$sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status FROM tblbestelbons
+        INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID
+        INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status";
 $overzichtbestelbons = $dbh->query($sql);
-
+//
 //var_dump($overzichtbestelbons->fetchAll());
 //die();
 ?>
@@ -57,7 +59,8 @@ $overzichtbestelbons = $dbh->query($sql);
           <th>Klanten nummer</th>
           <th>Naam klant</th>
           <th>Tijdstip bestelling</th>
-            <th></th>
+          <th>Status</th>
+          <th></th>
         </tr>
         </thead>
         <?php
@@ -69,6 +72,7 @@ $overzichtbestelbons = $dbh->query($sql);
               <td><?php echo $bestelbon['tblklant_KlantID']; ?></td>
               <td><?php echo $bestelbon['Naam']; ?></td>
               <td><?php echo $bestelbon['besteldatum']; ?></td>
+              <td><?php echo $bestelbon['status']; ?></td>
               <td><button><a href=detail.php?id=<?php echo $bestelbon['id'] ?>>Details</a></button></td>
           </tr>
           <?php
