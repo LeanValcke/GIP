@@ -23,9 +23,6 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
 //var_dump($bestelgegevens);
 //var_dump($bestelstatussen->fetchAll());
 //var_dump($bestelbonContent->fetchAll());
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,7 +55,7 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
 
 </head>
 <body>
-<?php $page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
+<?php //$page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
 
 <main class="container categorielijst">
     <div class="row">
@@ -66,7 +63,24 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
         <h4>Bon gegevens:</h4><br>
         <p>Bestelbon ID: <?php echo $bestelgegevens['bestelbon_id']; ?><br>
             Besteldatum:  <?php echo $bestelgegevens['besteldatum']; ?><br>
-            Bestelstatus:  <?php echo $bestelgegevens['bestelstatus_naam']; ?></p>
+            Bestelstatus:
+
+            <form>
+                <div class="input-group">
+                    <select class="custom-select" id="inputGroupSelect04" name="BestelstatusChange" aria-label="Example select with button addon">
+                        <?php
+                            foreach($bestelstatussen as $bestelstatus){
+                                $selected = $bestelstatus['id'] == $bestelgegevens['bestelstatus_id'] ? "selected" : "";
+                                echo "<option {$selected} value={$bestelstatus['id']}>{$bestelstatus['status']}</option>";
+                            }
+                        ?>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Bewaar nieuwe bestelstatus</button>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
     <div class="row mt-3">
@@ -101,7 +115,10 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
         </div>
         <div class="row">
             <div class="col-12">
-                <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5>
+                <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
+            </div>
+            <div>
+                <a class="btn btn-info" href="javascript:history.back()"">Terug</a>
             </div>
         </div>
     </div>
