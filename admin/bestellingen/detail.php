@@ -2,6 +2,30 @@
 require( '../../config.php' );
 require_once '../../databank.php';
 
+$fout = '';
+$status_success = false;
+if( !$_SESSION['IS_ADMIN'] )
+{
+    /*  Deze pagina mag enkel getoond worden aan beheerders */
+
+    $fout = 'U heeft geen toegang tot deze module!';
+}
+
+if(isset($_POST['BestelstatusChange']) || isset($_POST['bestelbon_id']))
+{
+    $sql = "UPDATE tblbestelbons SET status = {$_POST['BestelstatusChange']} WHERE id = {$_POST['bestelbon_id']}";
+
+    try {
+        $dbh->query($sql);
+        if ($dbh->query($sql) === TRUE) {
+            echo "Record updated successfully";
+            $status_success = true;
+        }
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+}
+
 $bestelbon_id = $_GET['bestelbon_id'];
 
 //connectie
@@ -65,7 +89,7 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
             Besteldatum:  <?php echo $bestelgegevens['besteldatum']; ?><br>
             Bestelstatus:
 
-            <form>
+            <form method="POST" action="detail.php?bestelbon_id=<?php echo $bestelgegevens['bestelbon_id']; ?>">
                 <div class="input-group">
                     <select class="custom-select" id="inputGroupSelect04" name="BestelstatusChange" aria-label="Example select with button addon">
                         <?php
@@ -76,9 +100,10 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
                         ?>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Bewaar nieuwe bestelstatus</button>
+                        <button class="btn btn-outline-secondary" type="submit">Bewaar nieuwe bestelstatus</button>
                     </div>
                 </div>
+                <input type="hidden" id="bestelbon_id" name="bestelbon_id" value="<?php echo $bestelgegevens['bestelbon_id']; ?>">
             </form>
 
         </div>
@@ -118,7 +143,7 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
                 <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
             </div>
             <div>
-                <a class="btn btn-info" href="javascript:history.back()"">Terug</a>
+                <a class="btn btn-info" href="<?php echo SITE_URL; ?>/admin/bestellingen/index.php">Terug</a>
             </div>
         </div>
     </div>
