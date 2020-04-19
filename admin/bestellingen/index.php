@@ -73,7 +73,7 @@ $overzichtbestelbons = $dbh->query($sql);
               <td><?php echo $bestelbon['Naam']; ?></td>
               <td><?php echo $bestelbon['besteldatum']; ?></td>
               <td><?php echo $bestelbon['status']; ?></td>
-              <td><button><a href=detail.php?id=<?php echo $bestelbon['id'] ?>>Details</a></button></td>
+              <td><button><a href=detail.php?bestelbon_id=<?php echo $bestelbon['id'] ?>>Details</a></button></td>
           </tr>
           <?php
         }
