@@ -11,7 +11,7 @@ $sql = "SELECT tblbestelbons.id AS bestelbon_id, tblbestelbons.besteldatum, tblb
         WHERE tblbestelbons.id = {$bestelbon_id}";
 $bestelbon = $dbh->query($sql);
 
-$sql = "SELECT * FROM tblbestelbons_tblproduct
+$sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
         INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
         WHERE tblbestelbons_id = {$bestelbon_id}";
 $bestelbonContent = $dbh->query($sql);
@@ -78,42 +78,32 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
                     <th>Naam product</th>
                     <th>Aantal besteld</th>
                     <th>Eenheidsprijs</th>
+                    <th>Subtotaal</th>
                 </tr>
                 </thead>
                 <?php
 
-                foreach ($bestelbonContent as $bestedetail) {
+                $totaal = 0;
+                foreach ($bestelbonContent as $besteldetail) {
                     ?>
                     <tr>
-                        <td><?php echo $bestedetail['tblproduct_ProductID']; ?></td>
-                        <td><?php echo $bestedetail['Gamenaam']; ?></td>
-                        <td><?php echo $bestedetail['aantal']; ?></td>
-                        <td><?php echo $bestedetail['eenheidsprijs']; ?> EUR</td>
+                        <td><?php echo $besteldetail['tblproduct_ProductID']; ?></td>
+                        <td><?php echo $besteldetail['Gamenaam']; ?></td>
+                        <td><?php echo $besteldetail['aantal']; ?></td>
+                        <td><?php echo $besteldetail['eenheidsprijs']; ?> EUR</td>
+                        <td><?php echo $besteldetail['subtotaal']; ?> EUR</td>
                     </tr>
                     <?php
+                    $totaal+= $besteldetail['subtotaal'];
                 }
                 ?>
-
-                <!--                        --><?php //
-                //                                                          }
-                //                        ?>
             </table>
         </div>
         <div class="row">
             <div class="col-12">
-                <h5>Totaalbedrag: <?php  ?> EUR</h5>
+                <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5>
             </div>
         </div>
-
-        <!--    --><?php
-        //    function pre_r($array)
-        //    {
-        //      echo '<pre>';
-        //      print_r($array);
-        //      echo '<pre>';
-        //    }
-        //
-        //    ?>
     </div>
 </main>
 
