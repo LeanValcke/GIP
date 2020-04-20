@@ -4,7 +4,6 @@
 //connectie
 $sql = "SELECT ProductID, ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving FROM tblproduct";
 $productlijst = $dbh->query($sql);
-
 ?>
 
 
@@ -37,12 +36,30 @@ $productlijst = $dbh->query($sql);
   <script src="../../js/main.js"></script>
 
 </head>
-<body style="background-color:white;">
-<?php $page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
-
+<body style="background-color:white;"> <div class="midden">
+<?php $page='producten'; require( SITE_DIR.'/Includes/navbar.php' ); ?>
+<?php if( $_SESSION['IS_ADMIN'] ) { ?>
+                        <nav class="header-nav" style="background:black; color:white;" >
+                    <a>BEHEER:</a>
+                    <ul class="main-menu">
+                        <li>
+                            <a class="<?php if ($page=='Bestellingen'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/bestellingen/index.php">Bestellingen</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='gebruikers'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/gebruikers/index.php">Gebruikers</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='producten'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/producten/index.php">Producten</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='categorieën'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/categorieen/index.php">Categorieën</a>
+                        </li>        
+                    </ul>
+                </nav>
+                <?php } ?> 
 <!---->
 <!--        --><?php //} } ?>
-
+    
 <main class="container klantenlijst">
   <div class="row mt-3">
     <div class="col-12">
@@ -57,7 +74,6 @@ $productlijst = $dbh->query($sql);
           <th>GameID</th>
           <th>Foto</th>
           <th>Beschrijving</th>
-          <th>Delete</th>
         </tr>
         </thead>
         <?php
@@ -71,13 +87,13 @@ $productlijst = $dbh->query($sql);
             <td><?php echo $product['Gamenaam']; ?></td>
             <td><?php echo $product['Merchnaam']; ?></td>
             <td><?php echo $product['GameID']; ?></td>
-            <td><img src="<?php echo URL_SUBFOLDER; ?>/img/<?php echo $product['foto']; ?>" alt="<?php echo $product['foto']; ?>" height="62" width="62"></td>
+            <td><img src="../../img/<?php echo $product['foto']; ?>" alt="<?php echo $product['foto']; ?>" height="62" width="62"></td>
             <td><?php echo $product['Beschrijving']; ?></td>
-            <td><button><a href=delete.php?id=<?php echo $product['ProductID'] ?>>DELETE</a></button></td>
-
-        <?php } ?>
+          </tr>
+          <?php
+        }
         ?>
-        
+
       </table>
 
 <!--      <div class="card" style="width: 18rem;">-->
