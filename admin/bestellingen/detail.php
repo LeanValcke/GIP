@@ -85,7 +85,7 @@ $levergegevens = $levergegevens->fetchAll()[0];
 
 </head>
 <body>
-<?php //$page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
+<?php $page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
 
 <main class="container categorielijst">
     <div class="row">
