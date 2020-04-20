@@ -30,7 +30,7 @@ $bestelbon_id = $_GET['bestelbon_id'];
 
 //connectie
 // Bestelbon ophalen uit database, samen met bestelbon details
-$sql = "SELECT tblbestelbons.id AS bestelbon_id, tblbestelbons.besteldatum, tblbestelstatus.status AS bestelstatus_naam, tblbestelstatus.id AS bestelstatus_id FROM tblbestelbons
+$sql = "SELECT tblbestelbons.id AS bestelbon_id, tblbestelbons.tblklant_KlantID AS KlantID, tblbestelbons.besteldatum, tblbestelstatus.status AS bestelstatus_naam, tblbestelstatus.id AS bestelstatus_id FROM tblbestelbons
         INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
         WHERE tblbestelbons.id = {$bestelbon_id}";
 $bestelbon = $dbh->query($sql);
@@ -44,6 +44,12 @@ $sql = "SELECT tblbestelstatus.id, tblbestelstatus.status FROM tblbestelstatus";
 $bestelstatussen = $dbh->query($sql);
 
 $bestelgegevens = $bestelbon->fetchAll()[0];
+
+$sql = "SELECT * FROM tblklant WHERE KlantID = {$bestelgegevens['KlantID']}";
+$levergegevens = $dbh->query($sql);
+
+$levergegevens = $levergegevens->fetchAll()[0];
+
 //var_dump($bestelgegevens);
 //var_dump($bestelstatussen->fetchAll());
 //var_dump($bestelbonContent->fetchAll());
@@ -83,7 +89,7 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
 
 <main class="container categorielijst">
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
         <h4>Bon gegevens:</h4><br>
         <p>Bestelbon ID: <?php echo $bestelgegevens['bestelbon_id']; ?><br>
             Besteldatum:  <?php echo $bestelgegevens['besteldatum']; ?><br>
@@ -107,6 +113,15 @@ $bestelgegevens = $bestelbon->fetchAll()[0];
             </form>
 
         </div>
+        <div class="col-6">
+            <h4>Klanten gegevens:</h4>
+            <p>Klant ID: <?php echo $levergegevens['KlantID']; ?><br>
+            Klant Naam:  <?php echo $levergegevens['Naam']; ?><br>
+            Tel. Nummer: <?php echo $levergegevens['Telefoonnummer']; ?><br>
+            Leveringsadres:</p>
+            <b><?php echo $levergegevens['Adres']; ?><br><?php echo $levergegevens['Postcode']; ?> <?php echo $levergegevens['Gemeente']; ?><br><br></b>
+        </div>
+    </div>
     </div>
     <div class="row mt-3">
         <div class="col-12">
