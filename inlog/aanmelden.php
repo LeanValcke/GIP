@@ -212,15 +212,9 @@ require('../Includes/navbar.php'); ?>
                             ?>
                             <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
                                 <thead>
-                                <!--                            <tr>-->
-                                <!--                                <th>Bestelbon nummer</th>-->
-                                <!--                                <th>Besteldatum</th>-->
-                                <!--                                <th>Status van uw bestelling</th>-->
-                                <!--                                <th></th>-->
-                                <!--                            </tr>-->
-                                <!--                            </thead>-->
-                                <tbody>
 
+                                </thead>
+                                <tbody>
                                 <tr>
                                     <td>Bestelbon nummer: <?php echo $bestelbon['id']; ?></td>
                                     <td>Besteldatum: <?php echo $bestelbon['besteldatum']; ?></td>
@@ -230,13 +224,13 @@ require('../Includes/navbar.php'); ?>
                             </table>
 
                             <?php
-                                // Artikels ophalen voor een specifieke $bestelbon['id']
-                                $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
+                            // Artikels ophalen voor een specifieke $bestelbon['id']
+                            $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
                                         INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
                                         WHERE tblbestelbons_id = {$bestelbon['id']}";
-                                $bestelbonContent = $dbh->query($sql);
+                            $bestelbonContent = $dbh->query($sql);
 
-                                var_dump($bestelbonContent->fetchAll());
+                            $totaal = 0;
                             ?>
 
                             <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
@@ -251,22 +245,50 @@ require('../Includes/navbar.php'); ?>
                                     <td>
                                         Aantal besteld
                                     </td>
+                                    <td>
+                                        Eenheidsprijs
+                                    </td>
+                                    <td>
+                                        Subtotaal
+                                    </td>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
+                                <?php
+                                foreach ($bestelbonContent as $content) {
+                                    ?>
 
-                                    </td>
-                                    <td>
+                                    <tr>
+                                        <td>
+                                            <?php echo $content['tblproduct_ProductID'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $content['Gamenaam'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $content['aantal'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $content['eenheidsprijs'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $content['subtotaal'] ?>
+                                        </td>
+                                    </tr>
 
-                                    </td>
-                                    <td>
+                                    <?php
+                                    $totaal += $content['subtotaal'];
+                                }
+                                ?>
 
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
+                                </div>
+
+                            </div>
 
                             <?php
                         }
