@@ -16,7 +16,7 @@ if(isset($_POST['BestelstatusChange']) || isset($_POST['bestelbon_id']))
     $sql = "UPDATE tblbestelbons SET status = {$_POST['BestelstatusChange']} WHERE id = {$_POST['bestelbon_id']}";
 
     try {
-        $dbh->query($sql);
+//        $dbh->query($sql);
         if ($dbh->query($sql) === TRUE) {
             echo "Record updated successfully";
             $status_success = true;

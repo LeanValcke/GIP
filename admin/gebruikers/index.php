@@ -4,6 +4,7 @@
 //connectie
 $sql = "SELECT KlantID, Naam, Telefoonnummer, Adres, Gemeente, Postcode, Email FROM tblklant";
 $klantenlijst = $dbh->query($sql);
+
 ?>
 
 
@@ -36,8 +37,27 @@ $klantenlijst = $dbh->query($sql);
   <script src="../../js/main.js"></script>
 
 </head>
-<body style="background-color:white;">
-        <?php $page=''; require( SITE_DIR.'/Includes/navbar.php' ); ?>
+<body style="background-color:white;"> <div class="midden">
+<?php $page='gebruikers'; require( SITE_DIR.'/Includes/navbar.php' ); ?>
+<?php if( $_SESSION['IS_ADMIN'] ) { ?>
+                               <nav class="header-nav" style="background:black; color:white;" >
+                    <a>BEHEER:</a>
+                    <ul class="main-menu">
+                        <li>
+                            <a class="<?php if ($page=='Bestellingen'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/bestellingen/index.php">Bestellingen</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='gebruikers'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/gebruikers/index.php">Gebruikers</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='producten'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/producten/index.php">Producten</a>
+                        </li>
+                        <li>
+                            <a class="<?php if ($page=='categorieën'){echo 'active';}?>" href="<?php echo SITE_URL; ?>/admin/categorieen/index.php">Categorieën</a>
+                        </li>        
+                    </ul>
+                </nav>
+                <?php } ?> 
 
 <!---->
 <!--        --><?php //} } ?>
