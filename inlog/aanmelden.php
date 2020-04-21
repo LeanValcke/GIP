@@ -1,4 +1,21 @@
-<?php require('../config.php'); ?>
+<?php
+require('../config.php');
+require_once('../databank.php');
+
+// Checken welke KlantID is ingelogd?
+if(isset($_SESSION['KlantID'])) {
+    $klant_id = $_SESSION['KlantID'];
+
+    // Bestelbon nummer, Klanten nummer, Klanten naam, besteldatum en manueel klikbare link naar bestelling details maken
+    $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status FROM tblbestelbons
+        INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID
+        INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
+        WHERE tblklant_KlantID = {$klant_id}";
+    $overzichtbestelbons = $dbh->query($sql);
+}
+
+?>
+
 <html>
     <head>
         <title>Gegevens</title>
@@ -166,8 +183,37 @@
                 <div class="row shadow p-3 bg-white rounded">
                     <div class="col-8"><h4>Mijn bestellingen</h4></div>
                     <div class="col-4 text-right" style="padding-top:5%;"> </div>
-                    <button name="bekijkknop" style="background-color: red; border-color: red " 
-                            type="submit" class="btn btn-md btn-success">Bekijk</button>
+<!--                    <button name="bekijkknop" style="background-color: red; border-color: red " -->
+<!--                            type="submit" class="btn btn-md btn-success">Bekijk</button>-->
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
+                            <thead>
+                            <tr>
+                                <th>Bestelbon nummer</th>
+                                <th>Besteldatum</th>
+                                <th>Status van uw bestelling</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if(isset($_SESSION['KlantID'])) {
+                                    foreach ($overzichtbestelbons as $bestelbon) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $bestelbon['id']; ?></td>
+                                            <td><?php echo $bestelbon['besteldatum']; ?></td>
+                                            <td><?php echo $bestelbon['status']; ?></td>
+                                            <td><button class="btn btn-danger"><a href=detail.php?bestelbon_id=<?php echo $bestelbon['id'] ?>>Details</a></button></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <br>
             </form>
