@@ -1,5 +1,5 @@
 <?php 
-/*  Voordat de insert, update of delete mag gebeuren, moeten een aantal controles uitgevoerd worden:
+/*  Voordat de insert, update of delete mag gebeuren, moeten een Aantal controles uitgevoerd worden:
 
     CREATE:
         categorienaam moet ingevuld zijn

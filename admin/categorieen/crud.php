@@ -10,7 +10,7 @@ Aan de hand van $_POST['ACTION'] kan bepaald worden wat er moet gebeuren:
     2/ = UPDATE -> de opgegeven categorie moet gewijzig worden -> UPDATE ...
     3/ = DELETE -> de opgegeven categorie mag geschrapt worden -> DELETE FROM ...
 
-Voordat de insert, update of delete mag gebeuren, moeten een aantal controles uitgevoerd worden.
+Voordat de insert, update of delete mag gebeuren, moeten een Aantal controles uitgevoerd worden.
 De controles worden uitgevoerd in de functie Validatie die je vindt in het bestand validatie.php
 Deze functie geeft een lege string terug als alle controles OK zijn
 Anders geeft de functie een string terug die de foutboodschap (reden) bevat

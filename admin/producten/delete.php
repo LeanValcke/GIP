@@ -1,16 +1,26 @@
 <?php require('../../config.php'); ?>
 <?php require_once '../../databank.php'; ?>
 <?php
-//connectie
-//var_dump($_GET['id']);
-//die();
 
-$sql = "DELETE FROM tblproduct WHERE ProductID=" . $_GET['id'];
-$productlijst = $dbh->query($sql);
 
-if($productlijst)
-    header("refresh:1; url=index.php");
+if(isset($_POST['delete']))
+{
+    
+     //connectie
+        $dbh = new PDO (DB_CONNECTION, DB_USERNAME, DB_PASSWORD);
+    
+    $chkarr = $_POST['checkbox'];
+    foreach($chkarr as $ProductID)
+    {
+        $sql = "DELETE FROM tblproduct WHERE ProductID=".$ProductID;
+    }
+        header("refresh:1; url=index.php");
+}
 else
-    echo "Niet verwijderd!";
+{
+    echo "niet gelukt";
+}
 ?>
+
+
 
