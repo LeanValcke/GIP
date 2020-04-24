@@ -1,5 +1,4 @@
 <?php
-
 require('../../config.php');
 require_once '../../databank.php';
 
@@ -9,9 +8,6 @@ $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.
         INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID
         INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status";
 $overzichtbestelbons = $dbh->query($sql);
-//
-//var_dump($overzichtbestelbons->fetchAll());
-//die();
 ?>
 
 <html>
@@ -85,32 +81,7 @@ $overzichtbestelbons = $dbh->query($sql);
       </table>
     </div>
 
-<!--    --><?php
-//    function pre_r($array)
-//    {
-//      echo '<pre>';
-//      print_r($array);
-//      echo '<pre>';
-//    }
-//
-//    ?>
   </div>
 </main>
 </body>
 </html>
-<!---->
-<!---->
-<!--//-->
-<!--//if( !$_SESSION['IS_ADMIN'] ) {-->
-<!--//    $_SESSION['ALERT_CODE'] = 'ERROR';-->
-<!--//    $_SESSION['ALERT_HEAD'] = 'Bestellingen';-->
-<!--//    $_SESSION['ALERT_BODY'] = 'U bent geen administrator!';-->
-<!--//}-->
-<!--//else-->
-<!--//{-->
-<!--//    $_SESSION['ALERT_CODE'] = 'ERROR';-->
-<!--//    $_SESSION['ALERT_HEAD'] = 'Bestellingen';-->
-<!--//    $_SESSION['ALERT_BODY'] = 'Deze module moet nog geprogrammeerd worden.';-->
-<!--//}-->
-<!--//-->
-<!--//header('location:'.SITE_URL);-->

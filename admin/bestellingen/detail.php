@@ -50,9 +50,6 @@ $levergegevens = $dbh->query($sql);
 
 $levergegevens = $levergegevens->fetchAll()[0];
 
-//var_dump($bestelgegevens);
-//var_dump($bestelstatussen->fetchAll());
-//var_dump($bestelbonContent->fetchAll());
 ?>
 <!DOCTYPE html>
 <html>
