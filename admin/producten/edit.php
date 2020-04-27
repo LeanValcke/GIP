@@ -15,6 +15,8 @@ $data = [
 ];
 $recordsaved = FALSE;
 
+var_dump($_POST);
+
 if(isset($_POST['succes']) || isset($_POST['annuleren'])){
     $location = SITE_URL.'/admin/producten/index.php';
     header( 'location:' . $location );
@@ -22,8 +24,6 @@ if(isset($_POST['succes']) || isset($_POST['annuleren'])){
 elseif(isset($_POST['edit']) && isset($_POST['productid'])) // Gegevens ophalen om de formulier te pré-fillen op basis van productid
 {
     $productid = intval($_POST ['productid']);
-
-    var_dump($productid);
 
     $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving AS beschrijving
             FROM tblproduct
@@ -34,18 +34,15 @@ elseif(isset($_POST['edit']) && isset($_POST['productid'])) // Gegevens ophalen 
     $data = $record->fetch();
 
     if($data){
-        var_dump($data);
-
-
-
+//        var_dump($data);
     } else {
         echo "Error 404 - Geen product gevonden met deze naam";
         die();
     }
-
-    //    die();
 }
 elseif(isset($_POST['saveform']) && isset($_POST['productid'])) { // Bewaren na editen bestaand product (heeft een productid)
+
+    var_dump("Updaten formulier");
 
     $productid = [$_POST['productid']];
 
@@ -65,14 +62,16 @@ elseif(isset($_POST['saveform']) && isset($_POST['productid'])) { // Bewaren na 
 }
 elseif(isset($_POST['saveform']) && $productid == NULL){ // Saven nieuw product (heeft initieel geen productid)
 
-  $sql = $sql = "INSERT INTO tblproduct (tblklant_KlantID, status) VALUES ({$klant_id},{$status})";
+    var_dump("Bewaren formulier - nieuwe record");
+
+//  $sql = $sql = "INSERT INTO tblproduct (tblklant_KlantID, status) VALUES ({$klant_id},{$status})";
 
 //    $recordsaved = true; // indien saven is gelukt...
 }
 else
 {
-    echo "U hebt geen toegang tot deze pagina!";
-    die();
+  // Nieuw record invoeren
+
 }
 
 
@@ -121,26 +120,26 @@ else
     <div class="col-12">
       <form method="post" action="edit.php">
 
-        <?php if($data) { ?>
+        <?php if(isset($data['id'])) { ?>
           <div class="form-group">
             <label for="id">Product ID</label>
-            <input type="text" disabled class="form-control" id="id" aria-describedby="id" value="<?php echo $data['id'];?>">
+            <input type="text" disabled class="form-control" id="id" name="id" aria-describedby="id" value="<?php echo $data['id'];?>">
           </div>
         <?php } ?>
 
         <div class="form-group">
           <label for="gamenaam">Gamenaam</label>
-          <input type="text" class="form-control" id="gamenaam" placeholder="Gamenaam" value="<?php echo $data['gamenaam'];?>">
+          <input type="text" class="form-control" id="gamenaam" name="gamenaam" placeholder="Gamenaam" value="<?php echo $data['gamenaam'];?>">
         </div>
 
         <div class="form-group">
           <label for="prijs">Prijs (€uro)</label>
-          <input type="text" class="form-control" id="prijs" placeholder="Prijs" value="<?php echo $data['prijs'];?>">
+          <input type="text" class="form-control" id="prijs" name="prijs" placeholder="Prijs" value="<?php echo $data['prijs'];?>">
         </div>
 
         <div class="form-group">
           <label for="merchnaam">Merchandising naam</label>
-          <input type="text" class="form-control" id="merchnaam" placeholder="Merchandising naam" value="<?php echo $data['merchnaam'];?>">
+          <input type="text" class="form-control" id="merchnaam" name="merchnaam" placeholder="Merchandising naam" value="<?php echo $data['merchnaam'];?>">
         </div>
 
 <!--        <div class="form-group">-->
@@ -150,7 +149,7 @@ else
 
         <div class="form-group">
           <label for="beschrijving">Beschrijving</label>
-          <textarea class="form-control" id="beschrijving" rows="3"><?php echo $data['beschrijving'];?></textarea>
+          <textarea class="form-control" id="beschrijving" name="beschrijving" rows="3"><?php echo $data['beschrijving'];?></textarea>
         </div>
 
         <button class="btn btn-info" name="saveform" value="true">Bewaren</button>
