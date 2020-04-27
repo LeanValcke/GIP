@@ -11,44 +11,39 @@ $data = [
     'foto' => NULL,
     'beschrijving' => NULL,
     'gameid' => 0,
+    'aantal' => 0,
 ];
 $gameafdelingen = array();
 $recordsaved = FALSE; // Wordt TRUE als bij reload een record werd gesaved (voor notificatie in html)
+$validationError = FALSE;
 
 // Data ophalen voor drop-down
 $sql = "SELECT tblgameafdeling.GameID AS gameid, tblgameafdeling.Gamenaam AS gamenaam FROM tblgameafdeling";
 $record = $dbh->query($sql);
 $gameafdelingen = $record->fetchAll();
 
-var_dump($_POST);
-
 // Ingevoerde data valideren
 function validateInputData(array $input)
 {
-    $check = FALSE;
+    if (!empty($_POST['prijs'])
+        && !empty(trim(htmlspecialchars($_POST['gamenaam'])))
+        && !empty(trim(htmlspecialchars($_POST['merchnaam'])))
+        && !empty(trim(htmlspecialchars($_POST['gameid'])))
+        && !empty(trim(htmlspecialchars($_POST['beschrijving'])))
+        && !empty(trim(htmlspecialchars($_POST['aantal'])))
+    ) {
+        $data['prijs'] = $_POST['prijs'];
+        $data['gamenaam'] = $_POST['gamenaam'];
+        $data['merchnaam'] = $_POST['merchnaam'];
+        $data['beschrijving'] = $_POST['beschrijving'];
 
-    $data['id'] = test_input($_POST['productid']);
-    $data['prijs'] = test_input($_POST['prijs']);
-    $data['gamenaam'] = test_input($_POST['gamenaam']);
-    $data['merchnaam'] = test_input($_POST['merchnaam']);
-    $data['gameid'] = test_input($_POST['gameid']);
-    $data['beschrijving'] = test_input($_POST['beschrijving']);
-
-    if ($check) {
-        return true;
-    } else {
+        if ($_POST['gameid'] > 0 && is_numeric($_POST['aantal'])) {
+            $data['gameid'] = $_POST['gameid'];
+            $data['aantal'] = $_POST['aantal'];
+            return $data;
+        }
         return false;
     }
-
-}
-
-// Safety input check van elke input bij validatie
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
 }
 
 // CRUD checks
@@ -59,7 +54,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 {
     $productid = intval($_POST ['productid']);
 
-    $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving as beschrijving, tblproduct.GameID AS gameid
+    $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.ProductAantal AS aantal, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving as beschrijving, tblproduct.GameID AS gameid
             FROM tblproduct
             WHERE ProductID = {$productid}";
     $record = $dbh->query($sql);
@@ -68,34 +63,46 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
     $data = $record->fetch();
 
     if ($data) {
-        var_dump($data);
+//        var_dump($data);
     } else {
         echo "Error 404 - Geen product gevonden met deze naam";
         die();
     }
 } elseif (isset($_POST['saveform']) && isset($_POST['productid'])) { // Bewaren na editen bestaand product (heeft een productid)
-    var_dump("Updaten formulier");
+    $validatedData = validateInputData($data);
+    $validatedData['id'] = $_POST['productid'];
 
-    $productid = [$_POST['productid']];
+    if ($validatedData) {
+        $sql = "UPDATE tblproduct SET ProductPrijs = {$validatedData['prijs']},
+                                  ProductAantal = {$validatedData['aantal']},
+                                  Gamenaam = '{$validatedData['gamenaam']}',
+                                  Merchnaam = '{$validatedData['merchnaam']}',
+                                  GameID = {$validatedData['gameid']},
+                                  Beschrijving = '{$validatedData['beschrijving']}' WHERE ProductID = {$validatedData['id']}";
 
-    $recordsaved = TRUE; // indien saven is gelukt...
-    var_dump($recordsaved);
+        try {
+            if ($dbh->query($sql)) {
+                echo "Record updated successfully";
+                $recordsaved = TRUE; // indien saven is gelukt...
 
-    if (validateInputData($data)) {
-        echo "Validation check ok!";
-        var_dump($data);
-//        $sql = "UPDATE tblproduct
-//           SET status = {$_POST['BestelstatusChange']}
-//           WHERE id = {$productid}";
+                $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.ProductAantal AS aantal, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving as beschrijving, tblproduct.GameID AS gameid
+            FROM tblproduct
+            WHERE ProductID = {$validatedData['id']}";
+                $record = $dbh->query($sql);
 
-        $recordsaved = TRUE; // indien saven is gelukt...
-//        die();
+                // Record ophalen uit database
+                $data = $record->fetch();
 
+            } else {
+                echo "Gegevens konden niet worden bewaard in database";
+                die();
+            }
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+        }
     } else {
-
+        $validationError = TRUE;
     };
-
-
 } elseif (isset($_POST['saveform']) && !isset($_POST['productid'])) { // Saven nieuw product (heeft initieel geen productid)
     var_dump("Bewaren formulier - nieuwe record");
 
@@ -105,16 +112,13 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 //        $sql = "UPDATE tblproduct
 //           SET status = {$_POST['BestelstatusChange']}
 //           WHERE id = {$productid}";
-
-
-        $recordsaved = FALSE; // save is gelukt...
-//        die();
-    } else {
-
-    }
 //  $sql = $sql = "INSERT INTO tblproduct (tblklant_KlantID, status) VALUES ({$klant_id},{$status})";
 
 
+        $recordsaved = FALSE; // save is gelukt...
+    } else {
+        $validationError = TRUE;
+    }
 } else {
     // Nieuw record invoeren
 }
@@ -186,6 +190,12 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
         </div>
 
         <div class="form-group">
+          <label for="prijs">Aantal op voorraad</label>
+          <input type="number" class="form-control" id="aantal" name="aantal" placeholder="Aantal"
+                 value="<?php echo $data['aantal']; ?>">
+        </div>
+
+        <div class="form-group">
           <label for="merchnaam">Merchandising naam</label>
           <input type="text" class="form-control" id="merchnaam" name="merchnaam" placeholder="Merchandising naam"
                  value="<?php echo $data['merchnaam']; ?>">
@@ -225,11 +235,16 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
       </form>
     </div>
     <div class="col-12">
-      <?php if($recordsaved) { ?>
-        <div class="alert alert-success" role="alert">
-          Gegevens zijn succesvol bewaard!
-        </div>
-      <?php } ?>
+        <?php if ($recordsaved) { ?>
+          <div class="alert alert-success" role="alert">
+            Gegevens zijn succesvol bewaard!
+          </div>
+        <?php } ?>
+        <?php if ($validationError) { ?>
+          <div class="alert alert-danger" role="alert">
+            Gegevens werden niet correct of onvolledig ingevoerd, probeer opnieuw!
+          </div>
+        <?php } ?>
     </div>
 
       <?php
