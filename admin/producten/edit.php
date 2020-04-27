@@ -1,9 +1,7 @@
 <?php require('../../config.php'); ?>
 <?php require_once '../../databank.php'; ?>
 <?php
-//connectie
-//$sql = "SELECT ProductID, ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving FROM tblproduct";
-//$productlijst = $dbh->query($sql);
+// Initialiseren variabelen voor form zonder data
 $productid = NULL;
 $data = [
     'id' => NULL,
@@ -15,8 +13,7 @@ $data = [
     'gameid' => 0,
 ];
 $gameafdelingen = array();
-
-$recordsaved = FALSE; // checken of die wel goed wordt gebruikt...
+$recordsaved = FALSE; // Wordt TRUE als bij reload een record werd gesaved (voor notificatie in html)
 
 // Data ophalen voor drop-down
 $sql = "SELECT tblgameafdeling.GameID AS gameid, tblgameafdeling.Gamenaam AS gamenaam FROM tblgameafdeling";
@@ -28,11 +25,34 @@ var_dump($_POST);
 // Ingevoerde data valideren
 function validateInputData(array $input)
 {
-    var_dump("Validating Data before saving...");
-    return true;
+    $check = FALSE;
+
+    $data['id'] = test_input($_POST['productid']);
+    $data['prijs'] = test_input($_POST['prijs']);
+    $data['gamenaam'] = test_input($_POST['gamenaam']);
+    $data['merchnaam'] = test_input($_POST['merchnaam']);
+    $data['gameid'] = test_input($_POST['gameid']);
+    $data['beschrijving'] = test_input($_POST['beschrijving']);
+
+    if ($check) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
-if (isset($_POST['succes']) || isset($_POST['annuleren'])){
+// Safety input check van elke input bij validatie
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// CRUD checks
+if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
     $location = SITE_URL . '/admin/producten/index.php';
     header('location:' . $location);
 } elseif (isset($_POST['edit']) && isset($_POST['productid'])) // Gegevens ophalen om de formulier te pré-fillen op basis van productid
@@ -54,45 +74,47 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])){
         die();
     }
 } elseif (isset($_POST['saveform']) && isset($_POST['productid'])) { // Bewaren na editen bestaand product (heeft een productid)
-
     var_dump("Updaten formulier");
 
     $productid = [$_POST['productid']];
 
-    // Get POST data
-    var_dump($_POST);
-//    die();
-//
+    $recordsaved = TRUE; // indien saven is gelukt...
+    var_dump($recordsaved);
+
     if (validateInputData($data)) {
-        $sql = "UPDATE tblproduct 
-           SET status = {$_POST['BestelstatusChange']} 
-           WHERE id = {$productid}";
+        echo "Validation check ok!";
+        var_dump($data);
+//        $sql = "UPDATE tblproduct
+//           SET status = {$_POST['BestelstatusChange']}
+//           WHERE id = {$productid}";
 
-        var_dump($_POST);
-        var_dump($_GET);
-        die();
+        $recordsaved = TRUE; // indien saven is gelukt...
+//        die();
 
-//    $recordsaved = true; // indien saven is gelukt...
+    } else {
+
     };
 
 
-}
-elseif (isset($_POST['saveform']) && $productid == NULL){ // Saven nieuw product (heeft initieel geen productid)
+} elseif (isset($_POST['saveform']) && !isset($_POST['productid'])) { // Saven nieuw product (heeft initieel geen productid)
+    var_dump("Bewaren formulier - nieuwe record");
 
-var_dump("Bewaren formulier - nieuwe record");
+    if (validateInputData($data)) {
+        var_dump($data);
+        echo "Validation check ok!";
+//        $sql = "UPDATE tblproduct
+//           SET status = {$_POST['BestelstatusChange']}
+//           WHERE id = {$productid}";
 
-if (validateInputData($data)) {
-    $sql = "UPDATE tblproduct 
-           SET status = {$_POST['BestelstatusChange']} 
-           WHERE id = {$productid}";
 
-    var_dump($_POST);
-    var_dump($_GET);
-    die();
-}
+        $recordsaved = FALSE; // save is gelukt...
+//        die();
+    } else {
+
+    }
 //  $sql = $sql = "INSERT INTO tblproduct (tblklant_KlantID, status) VALUES ({$klant_id},{$status})";
 
-//    $recordsaved = true; // indien saven is gelukt...
+
 } else {
     // Nieuw record invoeren
 }
@@ -144,8 +166,9 @@ if (validateInputData($data)) {
 
           <?php if (isset($data['id'])) { ?>
             <div class="form-group">
-              <label for="id">Product ID</label>
-              <input type="text" disabled class="form-control" id="id" name="id" aria-describedby="id"
+              <label for="productid">Product ID</label>
+              <input type="text" disabled class="form-control" id="productid" name="productid"
+                     aria-describedby="productid"
                      value="<?php echo $data['id']; ?>">
             </div>
           <?php } ?>
@@ -172,10 +195,10 @@ if (validateInputData($data)) {
           <label for="gameid">Game Afdeling</label>
           <select class="custom-select" id="gameid" name="gameid" aria-label="Game id">
             <option <?php $data["gameid"] == 0 ? "selected" : "" ?> value="0">Selecteer game afdeling</option>
-            <?php foreach($gameafdelingen as $gameafdeling){
-                $selected = $gameafdeling['gameid'] == $data['gameid'] ? "selected" : "";
-              echo "<option {$selected} value='{$gameafdeling['gameid']}'> {$gameafdeling['gamenaam']}</option>";
-             } ?>
+              <?php foreach ($gameafdelingen as $gameafdeling) {
+                  $selected = $gameafdeling['gameid'] == $data['gameid'] ? "selected" : "";
+                  echo "<option {$selected} value='{$gameafdeling['gameid']}'> {$gameafdeling['gamenaam']}</option>";
+              } ?>
           </select>
         </div>
 
@@ -199,9 +222,14 @@ if (validateInputData($data)) {
           <?php } else { ?>
             <button class="btn btn-info" name="annuleren" value="true">Annuleren</button>
           <?php } ?>
-
       </form>
-
+    </div>
+    <div class="col-12">
+      <?php if($recordsaved) { ?>
+        <div class="alert alert-success" role="alert">
+          Gegevens zijn succesvol bewaard!
+        </div>
+      <?php } ?>
     </div>
 
       <?php
@@ -219,8 +247,8 @@ if (validateInputData($data)) {
 </html>
 <script>
     // Form fields die "disabled" staan, worden niet gepost. Dit is een workaround.
-    $('form').submit(function(e) {
-        $(':disabled').each(function(e) {
+    $('form').submit(function (e) {
+        $(':disabled').each(function (e) {
             $(this).removeAttr('disabled');
         })
     });
