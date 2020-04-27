@@ -2,23 +2,19 @@
 <?php require_once '../../databank.php'; ?>
 <?php
 
-
-if(isset($_POST['delete']))
+if(isset($_POST['delete']) && isset($_POST['productid']))
 {
-    
-     //connectie
-        $dbh = new PDO (DB_CONNECTION, DB_USERNAME, DB_PASSWORD);
-    
-    $chkarr = $_POST['checkbox'];
-    foreach($chkarr as $ProductID)
-    {
-        $sql = "DELETE FROM tblproduct WHERE ProductID=".$ProductID;
-    }
-        header("refresh:1; url=index.php");
+    // Record verwijderen uit database
+    var_dump($_POST);
+    die();
+
+
+
+
 }
 else
 {
-    echo "niet gelukt";
+    echo "Deleten is niet gelukt!";
 }
 ?>
 
