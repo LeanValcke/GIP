@@ -24,7 +24,6 @@ $record = $dbh->query($sql);
 $gameafdelingen = $record->fetchAll();
 
 var_dump($_POST);
-var_dump($gameafdelingen);
 
 // Ingevoerde data valideren
 function validateInputData(array $input)
@@ -40,7 +39,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])){
 {
     $productid = intval($_POST ['productid']);
 
-    $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving, tblproduct.GameID AS gameid
+    $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving as beschrijving, tblproduct.GameID AS gameid
             FROM tblproduct
             WHERE ProductID = {$productid}";
     $record = $dbh->query($sql);
@@ -218,3 +217,11 @@ if (validateInputData($data)) {
 </main>
 </body>
 </html>
+<script>
+    // Form fields die "disabled" staan, worden niet gepost. Dit is een workaround.
+    $('form').submit(function(e) {
+        $(':disabled').each(function(e) {
+            $(this).removeAttr('disabled');
+        })
+    });
+</script>
