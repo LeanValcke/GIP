@@ -6,10 +6,10 @@ ini_set('upload_max_filesize', '10M');
 ini_set('file_uploads', 'On');
 //ini_set('upload_tmp_dir', '/tmp');
 
-var_dump(sys_get_temp_dir ( ));
-
-var_dump($_POST);
-var_dump($_FILES);
+//var_dump(sys_get_temp_dir ( ));
+//
+//var_dump($_POST);
+//var_dump($_FILES);
 //die();
 
 // Initialiseren variabelen voor form zonder data
@@ -271,7 +271,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 </head>
 <body style="background-color:white;">
 <?php $page = '';
-//require(SITE_DIR . '/Includes/navbar.php');
+require(SITE_DIR . '/Includes/navbar.php');
 ?>
 
 <!---->
@@ -339,7 +339,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
             <div class="form-group">
               <label for="foto">Foto</label>
               <picture>
-                <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>"
+                <img id="foto" src="<?php if($data['foto'] !== NULL){echo URL_SUBFOLDER . '/img/' . $data['foto'];} else {echo URL_SUBFOLDER . '/img/no-image-available.png';} ?>"
                      alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
               </picture>
             </div>
