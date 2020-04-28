@@ -1,6 +1,14 @@
 <?php require('../../config.php'); ?>
 <?php require_once '../../databank.php'; ?>
+
 <?php
+ini_set('upload_max_filesize', '10M');
+ini_set('file_uploads', 'On');
+
+var_dump($_POST);
+var_dump($_FILES);
+//die();
+
 // Initialiseren variabelen voor form zonder data
 $productid = NULL;
 $data = [
@@ -185,74 +193,91 @@ require(SITE_DIR . '/Includes/navbar.php');
 <main class="container klantenlijst" style="margin-top: 150px;">
   <div class="row mt-3">
     <div class="col-12">
-      <form method="post" action="edit.php">
-
-          <?php if (isset($data['id'])) { ?>
-            <div class="form-group">
-              <label for="productid">Product ID</label>
-              <input type="text" disabled class="form-control" id="productid" name="productid"
-                     aria-describedby="productid"
-                     value="<?php echo $data['id']; ?>">
-            </div>
-          <?php } ?>
-
-        <div class="form-group">
-          <label for="gamenaam">Gamenaam</label>
-          <input type="text" class="form-control" id="gamenaam" name="gamenaam" placeholder="Gamenaam"
-                 value="<?php echo $data['gamenaam']; ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="prijs">Prijs (€uro)</label>
-          <input type="text" class="form-control" id="prijs" name="prijs" placeholder="Prijs"
-                 value="<?php echo $data['prijs']; ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="prijs">Aantal op voorraad</label>
-          <input type="number" class="form-control" id="aantal" name="aantal" placeholder="Aantal"
-                 value="<?php echo $data['aantal']; ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="merchnaam">Merchandising naam</label>
-          <input type="text" class="form-control" id="merchnaam" name="merchnaam" placeholder="Merchandising naam"
-                 value="<?php echo $data['merchnaam']; ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="gameid">Game Afdeling</label>
-          <select class="custom-select" id="gameid" name="gameid" aria-label="Game id">
-            <option <?php $data["gameid"] == 0 ? "selected" : "" ?> value="0">Selecteer game afdeling</option>
-              <?php foreach ($gameafdelingen as $gameafdeling) {
-                  $selected = $gameafdeling['gameid'] == $data['gameid'] ? "selected" : "";
-                  echo "<option {$selected} value='{$gameafdeling['gameid']}'> {$gameafdeling['gamenaam']}</option>";
-              } ?>
-          </select>
-        </div>
-
-        <!--        <div class="form-group">-->
-        <!--          <label for="foto">Merchandising naam</label>-->
-        <!--          <input type="" class="form-control" id="merchnaam" placeholder="Merchandising naam" value="-->
-          <?php //echo $data['merchnaam'];
-          ?><!--">-->
-        <!--        </div>-->
+      <form method="post" action="edit.php" enctype="multipart/form-data">
         <div class="row">
+          <div class="col-6">
 
-          <div class="form-group col-6">
-            <label for="beschrijving">Beschrijving</label>
-            <textarea class="form-control" id="beschrijving" name="beschrijving"
-                      rows="3"><?php echo $data['beschrijving']; ?></textarea>
+              <?php if (isset($data['id'])) { ?>
+                <div class="form-group">
+                  <label for="productid">Product ID</label>
+                  <input type="text" disabled class="form-control" id="productid" name="productid"
+                         aria-describedby="productid"
+                         value="<?php echo $data['id']; ?>">
+                </div>
+              <?php } ?>
+
+            <div class="form-group">
+              <label for="gamenaam">Gamenaam</label>
+              <input type="text" class="form-control" id="gamenaam" name="gamenaam" placeholder="Gamenaam"
+                     value="<?php echo $data['gamenaam']; ?>">
+            </div>
+
+            <div class="form-group">
+              <label for="prijs">Prijs (€uro)</label>
+              <input type="text" class="form-control" id="prijs" name="prijs" placeholder="Prijs"
+                     value="<?php echo $data['prijs']; ?>">
+            </div>
+
+            <div class="form-group">
+              <label for="prijs">Aantal op voorraad</label>
+              <input type="number" class="form-control" id="aantal" name="aantal" placeholder="Aantal"
+                     value="<?php echo $data['aantal']; ?>">
+            </div>
+
+            <div class="form-group">
+              <label for="merchnaam">Merchandising naam</label>
+              <input type="text" class="form-control" id="merchnaam" name="merchnaam" placeholder="Merchandising naam"
+                     value="<?php echo $data['merchnaam']; ?>">
+            </div>
+
+            <div class="form-group">
+              <label for="gameid">Game Afdeling</label>
+              <select class="custom-select" id="gameid" name="gameid" aria-label="Game id">
+                <option <?php $data["gameid"] == 0 ? "selected" : "" ?> value="0">Selecteer game afdeling</option>
+                  <?php foreach ($gameafdelingen as $gameafdeling) {
+                      $selected = $gameafdeling['gameid'] == $data['gameid'] ? "selected" : "";
+                      echo "<option {$selected} value='{$gameafdeling['gameid']}'> {$gameafdeling['gamenaam']}</option>";
+                  } ?>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="beschrijving">Beschrijving</label>
+              <textarea class="form-control" id="beschrijving" name="beschrijving"
+                        rows="3"><?php echo $data['beschrijving']; ?></textarea>
+            </div>
           </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="foto">Foto</label>
+              <picture>
+                <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>" alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
+              </picture>
+            </div>
 
+<!--            <form>-->
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" accept=".jpg,.jpeg,.png,.gif,.jfif" name="foto">
+                <label class="btn btn-info" class="custom-file-label" for="customFile">Kies foto</label>
+              </div>
+<!--            </form>-->
 
+            <script>
+                // Add the following code if you want the name of the file appear on select
+                $(".custom-file-input").on("change", function() {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                    var input = document.getElementById("customFile");
+                    var fReader = new FileReader();
+                    fReader.readAsDataURL(input.files[0]);
+                    console.log(fReader);
+                    fReader.onloadend = function(event){
+                        var img = document.getElementById("foto");
+                        img.src = event.target.result;
+                    }
+                });
+            </script>
 
-
-          <div class="form-group col-6">
-            <label for="foto">Foto</label>
-            <picture>
-            <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>" alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
-            </picture>
           </div>
         </div>
 
