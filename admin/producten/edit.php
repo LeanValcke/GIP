@@ -106,7 +106,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 } elseif (isset($_POST['saveform']) && !isset($_POST['productid'])) { // Saven nieuw product (heeft initieel geen productid)
     $validatedData = validateInputData($data);
 
-    var_dump($validatedData);
+//    var_dump($validatedData);
 
     if (validateInputData($data)) {
         $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
@@ -237,11 +237,21 @@ require(SITE_DIR . '/Includes/navbar.php');
           <?php //echo $data['merchnaam'];
           ?><!--">-->
         <!--        </div>-->
+        <div class="row">
 
-        <div class="form-group">
-          <label for="beschrijving">Beschrijving</label>
-          <textarea class="form-control" id="beschrijving" name="beschrijving"
-                    rows="3"><?php echo $data['beschrijving']; ?></textarea>
+          <div class="form-group col-6">
+            <label for="beschrijving">Beschrijving</label>
+            <textarea class="form-control" id="beschrijving" name="beschrijving"
+                      rows="3"><?php echo $data['beschrijving']; ?></textarea>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="foto">Foto</label>
+
+            
+            <textarea class="form-control" id="foto" name="foto"
+                      rows="3"><?php echo $data['foto']; ?></textarea>
+          </div>
         </div>
 
         <button class="btn btn-info" name="saveform" value="true">Bewaren</button>
