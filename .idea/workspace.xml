@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/admin/producten/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/producten/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/index.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Release" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1b8KhXD3XJVL20xxg797UeqnLvC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="" />
+      <created>1588008399286</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588008399286</updated>
+      <workItem from="1588008400422" duration="21402000" />
+    </task>
+    <task id="LOCAL-00001" summary="BUSY: CRUD voor producten">
+      <created>1588020148943</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588020148943</updated>
+    </task>
+    <task id="LOCAL-00002" summary="BUSY: CRUD voor producten">
+      <created>1588021082688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588021082688</updated>
+    </task>
+    <task id="LOCAL-00003" summary="BUSY: CRUD voor producten">
+      <created>1588023959054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588023959054</updated>
+    </task>
+    <task id="LOCAL-00004" summary="BUSY: CRUD voor producten">
+      <created>1588024573283</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588024573283</updated>
+    </task>
+    <task id="LOCAL-00005" summary="BUSY: CRUD voor producten">
+      <created>1588026448506</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588026448506</updated>
+    </task>
+    <task id="LOCAL-00006" summary="BUSY: CRUD voor producten - UPDATE complete&#10;TODO: CRUD voor producten - Insert...">
+      <created>1588031091491</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588031091491</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="BUSY: CRUD voor producten" />
+    <MESSAGE value="BUSY: CRUD voor producten - UPDATE complete&#10;TODO: CRUD voor producten - Insert..." />
+    <option name="LAST_COMMIT_MESSAGE" value="BUSY: CRUD voor producten - UPDATE complete&#10;TODO: CRUD voor producten - Insert..." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1588031091447">
+      <screen x="72" y="27" width="3768" height="2133" />
+    </state>
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588031091447" />
+    <state x="1445" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1588014768767">
+      <screen x="72" y="27" width="3768" height="2133" />
+    </state>
+    <state x="1445" y="728" width="1022" height="737" key="SettingsEditor/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588014768767" />
+    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1588031092778">
+      <screen x="72" y="27" width="3768" height="2133" />
+    </state>
+    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588031092778" />
+    <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1588030147385">
+      <screen x="3840" y="0" width="3840" height="2160" />
+    </state>
+    <state x="3945" y="350" width="1979" height="1447" key="find.popup/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588030147385" />
+  </component>
+</project>

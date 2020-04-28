@@ -88,27 +88,8 @@ require(SITE_DIR . '/Includes/navbar.php'); ?>
               <input type="hidden" name="productid" value="<?php echo $product['ProductID']; ?>">
               <button name="edit" value=true class="btn btn-info">EDIT</button>
             </form>
-
-            <!--                <button class="btn btn-light"><a href=delete.php?id=-->
-              <?php //echo $product['ProductID'] ?><!--DELETE</a></button></td>-->
-            <!---->
-
-
               <?php } ?>
-            ?>
-
       </table>
-
-      <!--      <div class="card" style="width: 18rem;">-->
-      <!--        <img src="..." class="card-img-top" alt="...">-->
-      <!--        <div class="card-body">-->
-      <!--          <h5 class="card-title">Card title</h5>-->
-      <!--          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-      <!--          <a href="#" class="btn btn-primary">Go somewhere</a>-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-
     </div>
 
       <?php

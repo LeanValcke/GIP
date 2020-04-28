@@ -104,18 +104,37 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
         $validationError = TRUE;
     };
 } elseif (isset($_POST['saveform']) && !isset($_POST['productid'])) { // Saven nieuw product (heeft initieel geen productid)
-    var_dump("Bewaren formulier - nieuwe record");
+    $validatedData = validateInputData($data);
+
+    var_dump($validatedData);
 
     if (validateInputData($data)) {
-        var_dump($data);
-        echo "Validation check ok!";
-//        $sql = "UPDATE tblproduct
-//           SET status = {$_POST['BestelstatusChange']}
-//           WHERE id = {$productid}";
-//  $sql = $sql = "INSERT INTO tblproduct (tblklant_KlantID, status) VALUES ({$klant_id},{$status})";
+        $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
+                ('{$validatedData['prijs']}','{$validatedData['aantal']}','{$validatedData['gamenaam']}','{$validatedData['merchnaam']}','{$validatedData['gameid']}','dummy','{$validatedData['beschrijving']}')";
 
+//        $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
+//                ('100','20','niemand','niemand2','3','dummy','The_quick_brown_fox_jumps')";
+        try {
+            if ($dbh->query($sql)) {
+                $recordsaved = TRUE; // save is gelukt...
 
-        $recordsaved = FALSE; // save is gelukt...
+                $id = $dbh->lastInsertId();
+                $recordsaved = TRUE; // indien saven is gelukt...
+
+                $sql = "SELECT tblproduct.ProductID AS id, tblproduct.ProductPrijs AS prijs, tblproduct.Gamenaam AS gamenaam, tblproduct.ProductAantal AS aantal, tblproduct.Merchnaam AS merchnaam, tblproduct.foto, tblproduct.Beschrijving as beschrijving, tblproduct.GameID AS gameid
+            FROM tblproduct
+            WHERE ProductID = {$id}";
+                $record = $dbh->query($sql);
+
+                // Record ophalen uit database
+                $data = $record->fetch();
+            } else {
+                echo "Gegevens konden niet worden bewaard in database";
+                die();
+            }
+        } catch (PDOException $e) {
+            echo 'Registeren van nieuw product details is mislukt: ' . $e->getMessage();
+        }
     } else {
         $validationError = TRUE;
     }
@@ -156,14 +175,14 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 </head>
 <body style="background-color:white;">
 <?php $page = '';
-//require(SITE_DIR . '/Includes/navbar.php');
+require(SITE_DIR . '/Includes/navbar.php');
 ?>
 
 <!---->
 <!--        --><?php //} }
 ?>
 
-<main class="container klantenlijst">
+<main class="container klantenlijst" style="margin-top: 150px;">
   <div class="row mt-3">
     <div class="col-12">
       <form method="post" action="edit.php">
