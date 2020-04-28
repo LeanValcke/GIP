@@ -4,6 +4,9 @@
 <?php
 ini_set('upload_max_filesize', '10M');
 ini_set('file_uploads', 'On');
+//ini_set('upload_tmp_dir', '/tmp');
+
+var_dump(sys_get_temp_dir ( ));
 
 var_dump($_POST);
 var_dump($_FILES);
@@ -54,6 +57,68 @@ function validateInputData(array $input)
     }
 }
 
+function fotoLoader()
+{
+    $file = false;
+
+    if (isset($_FILES['foto'])) {
+        if (!intval($_FILES['foto']['error'])) {
+            $image_dir = "merch/";
+            $target_dir = SITE_DIR . '/img/' . $image_dir;
+            $target_file = $target_dir . basename($_FILES["foto"]["name"]);
+            $image_filedir = $image_dir . basename($_FILES["foto"]["name"]);
+            $uploadOk = 1;
+
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+            // Check if image file is a actual image or fake image
+            if (isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["foto"]["tmp_name"]);
+                if ($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+
+            //// Check if file already exists
+            //            if (file_exists($target_file)) {
+            //                echo "Sorry, file already exists.";
+            //                $uploadOk = 0;
+            //            }
+            // Check file size
+            if ($_FILES["foto"]["size"] > 500000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+
+            // Allow certain file formats
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif") {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+
+                // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                    echo "The file " . basename($_FILES["foto"]["name"]) . " has been uploaded.";
+                    $file = $image_filedir;
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+    }
+    return $file;
+}
+
 // CRUD checks
 if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
     $location = SITE_URL . '/admin/producten/index.php';
@@ -81,12 +146,27 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
     $validatedData['id'] = $_POST['productid'];
 
     if ($validatedData) {
-        $sql = "UPDATE tblproduct SET ProductPrijs = {$validatedData['prijs']},
+        $fotoloaded = fotoLoader();
+
+        if($fotoloaded){
+            $sql = "UPDATE tblproduct SET ProductPrijs = {$validatedData['prijs']},
+                                  ProductAantal = {$validatedData['aantal']},
+                                  Gamenaam = '{$validatedData['gamenaam']}',
+                                  Merchnaam = '{$validatedData['merchnaam']}',
+                                  GameID = {$validatedData['gameid']},
+                                  foto = '{$fotoloaded}',
+                                  Beschrijving = '{$validatedData['beschrijving']}' WHERE ProductID = {$validatedData['id']}";
+
+        } else {
+            $sql = "UPDATE tblproduct SET ProductPrijs = {$validatedData['prijs']},
                                   ProductAantal = {$validatedData['aantal']},
                                   Gamenaam = '{$validatedData['gamenaam']}',
                                   Merchnaam = '{$validatedData['merchnaam']}',
                                   GameID = {$validatedData['gameid']},
                                   Beschrijving = '{$validatedData['beschrijving']}' WHERE ProductID = {$validatedData['id']}";
+        }
+
+        var_dump($sql);
 
         try {
             if ($dbh->query($sql)) {
@@ -117,11 +197,19 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 //    var_dump($validatedData);
 
     if (validateInputData($data)) {
-        $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
-                ('{$validatedData['prijs']}','{$validatedData['aantal']}','{$validatedData['gamenaam']}','{$validatedData['merchnaam']}','{$validatedData['gameid']}','dummy','{$validatedData['beschrijving']}')";
+        $fotoloaded = fotoLoader();
 
-//        $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
-//                ('100','20','niemand','niemand2','3','dummy','The_quick_brown_fox_jumps')";
+        if($fotoloaded)
+        {
+            $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
+                ('{$validatedData['prijs']}','{$validatedData['aantal']}','{$validatedData['gamenaam']}','{$validatedData['merchnaam']}','{$validatedData['gameid']}','{$fotoloaded}','{$validatedData['beschrijving']}')";
+
+        } else {
+            $sql = "INSERT INTO tblproduct (ProductPrijs, ProductAantal, Gamenaam, Merchnaam, GameID, foto, Beschrijving) VALUES
+                ('{$validatedData['prijs']}','{$validatedData['aantal']}','{$validatedData['gamenaam']}','{$validatedData['merchnaam']}','{$validatedData['gameid']}','no-image-available.png','{$validatedData['beschrijving']}')";
+
+        }
+
         try {
             if ($dbh->query($sql)) {
                 $recordsaved = TRUE; // save is gelukt...
@@ -183,7 +271,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
 </head>
 <body style="background-color:white;">
 <?php $page = '';
-require(SITE_DIR . '/Includes/navbar.php');
+//require(SITE_DIR . '/Includes/navbar.php');
 ?>
 
 <!---->
@@ -251,27 +339,27 @@ require(SITE_DIR . '/Includes/navbar.php');
             <div class="form-group">
               <label for="foto">Foto</label>
               <picture>
-                <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>" alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
+                <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>"
+                     alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
               </picture>
             </div>
 
-<!--            <form>-->
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" accept=".jpg,.jpeg,.png,.gif,.jfif" name="foto">
-                <label class="btn btn-info" class="custom-file-label" for="customFile">Kies foto</label>
-              </div>
-<!--            </form>-->
+            <div class="form-group">
+              <input type="file" class="custom-file-input" id="customFile" accept=".jpg,.jpeg,.png,.gif"
+                     name="foto">
+              <label class="btn btn-info" class="custom-file-label" for="customFile">Kies foto</label> <p>Max grootte aanbevolen: 500Kb</p>
+            </div>
 
             <script>
-                // Add the following code if you want the name of the file appear on select
-                $(".custom-file-input").on("change", function() {
+                // jQuery / JS om het stukje foto te visualiseren (opladen zal gebeuren in de volgende $_POST tijdens het bewaren
+                $(".custom-file-input").on("change", function () {
                     var fileName = $(this).val().split("\\").pop();
                     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                     var input = document.getElementById("customFile");
                     var fReader = new FileReader();
                     fReader.readAsDataURL(input.files[0]);
                     console.log(fReader);
-                    fReader.onloadend = function(event){
+                    fReader.onloadend = function (event) {
                         var img = document.getElementById("foto");
                         img.src = event.target.result;
                     }
