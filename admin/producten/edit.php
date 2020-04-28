@@ -245,12 +245,14 @@ require(SITE_DIR . '/Includes/navbar.php');
                       rows="3"><?php echo $data['beschrijving']; ?></textarea>
           </div>
 
+
+
+
           <div class="form-group col-6">
             <label for="foto">Foto</label>
-
-            
-            <textarea class="form-control" id="foto" name="foto"
-                      rows="3"><?php echo $data['foto']; ?></textarea>
+            <picture>
+            <img id="foto" src="<?php echo URL_SUBFOLDER . '/img/' . $data['foto']; ?>" alt="<?php echo $data['foto']; ?>" class="img-thumbnail">
+            </picture>
           </div>
         </div>
 

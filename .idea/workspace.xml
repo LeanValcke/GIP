@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/producten/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/producten/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/edit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588008399286</updated>
       <workItem from="1588008400422" duration="21738000" />
-      <workItem from="1588067521744" duration="1722000" />
+      <workItem from="1588067521744" duration="3138000" />
     </task>
     <task id="LOCAL-00001" summary="BUSY: CRUD voor producten">
       <created>1588020148943</created>
@@ -105,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588033894821</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="DONE: Delete records (producten)&#10;TODO: Foto's toevoegen aan CRUD">
+      <created>1588079024318</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588079024318</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,21 +123,22 @@
     <MESSAGE value="BUSY: CRUD voor producten" />
     <MESSAGE value="BUSY: CRUD voor producten - UPDATE complete&#10;TODO: CRUD voor producten - Insert..." />
     <MESSAGE value="DONE: CRUD voor producten - Insert complete...&#10;TODO: Insert / Update images (producten)...&#10;TODO: Delete records (producten)" />
-    <option name="LAST_COMMIT_MESSAGE" value="DONE: CRUD voor producten - Insert complete...&#10;TODO: Insert / Update images (producten)...&#10;TODO: Delete records (producten)" />
+    <MESSAGE value="DONE: Delete records (producten)&#10;TODO: Foto's toevoegen aan CRUD" />
+    <option name="LAST_COMMIT_MESSAGE" value="DONE: Delete records (producten)&#10;TODO: Foto's toevoegen aan CRUD" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1588033894781">
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1588079024218">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588033894781" />
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588079024218" />
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1588014768767">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588014768767" />
-    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1588033896409">
+    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1588079039967">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
-    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588033896409" />
+    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588079039967" />
     <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1588030147385">
       <screen x="3840" y="0" width="3840" height="2160" />
     </state>
