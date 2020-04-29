@@ -166,7 +166,7 @@ if (isset($_POST['succes']) || isset($_POST['annuleren'])) {
                                   Beschrijving = '{$validatedData['beschrijving']}' WHERE ProductID = {$validatedData['id']}";
         }
 
-        var_dump($sql);
+//        var_dump($sql);
 
         try {
             if ($dbh->query($sql)) {

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/producten/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/edit.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,9 +158,10 @@
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588014768767" />
-    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1588110451134">
-      <screen x="72" y="27" width="3768" height="2133" />
+    <state x="797" y="418" width="514" height="265" key="Vcs.Push.Dialog.v2" timestamp="1588189544996">
+      <screen x="72" y="27" width="1848" height="1053" />
     </state>
+    <state x="797" y="418" width="514" height="265" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1588189544996" />
     <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588110451134" />
     <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1588030147385">
       <screen x="3840" y="0" width="3840" height="2160" />
