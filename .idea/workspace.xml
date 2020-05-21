@@ -22,12 +22,6 @@
     <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/bestellingen/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/bestellingen/detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inlog/aanmelden.php" beforeDir="false" afterPath="$PROJECT_DIR$/inlog/aanmelden.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/winkelkar/betalen.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/betalen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/winkelkar/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/winkelkar/toevoegen.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/toevoegen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/winkelkar/winkelkar.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/winkelkar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,6 +60,11 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -79,7 +79,7 @@
       <workItem from="1588008400422" duration="21738000" />
       <workItem from="1588067521744" duration="12118000" />
       <workItem from="1588108265294" duration="2594000" />
-      <workItem from="1590010980041" duration="14067000" />
+      <workItem from="1590010980041" duration="16433000" />
     </task>
     <task id="LOCAL-00001" summary="BUSY: CRUD voor producten">
       <created>1588020148943</created>
@@ -158,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588110449431</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="DONE: Toevoegen tblleveringsadressen + bewaren gegevens bij bestellen&#10;FIX: UTF8 + PDO correctie voor UTF8&#10;TODO: Leveringsadres toevoegen aan detail bestelling">
+      <created>1590101001998</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1590101001998</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,13 +192,14 @@
     <MESSAGE value="DONE: Delete records (producten)&#10;TODO: Foto's toevoegen aan CRUD" />
     <MESSAGE value="BUSY: Foto selector + uploader (jQuery)" />
     <MESSAGE value="DONE: Foto selector + uploader (jQuery)&#10;TODO: Default foto &quot;empty&quot; bij nieuw record" />
-    <option name="LAST_COMMIT_MESSAGE" value="DONE: Foto selector + uploader (jQuery)&#10;TODO: Default foto &quot;empty&quot; bij nieuw record" />
+    <MESSAGE value="DONE: Toevoegen tblleveringsadressen + bewaren gegevens bij bestellen&#10;FIX: UTF8 + PDO correctie voor UTF8&#10;TODO: Leveringsadres toevoegen aan detail bestelling" />
+    <option name="LAST_COMMIT_MESSAGE" value="DONE: Toevoegen tblleveringsadressen + bewaren gegevens bij bestellen&#10;FIX: UTF8 + PDO correctie voor UTF8&#10;TODO: Leveringsadres toevoegen aan detail bestelling" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1588110449351">
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1590101001917">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588110449351" />
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590101001917" />
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1588014768767">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
