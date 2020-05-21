@@ -50,7 +50,8 @@ if (isset($_GET['ProductID'])) {
 
 }
 //
-//var_dump($_SESSION);
+//var_dump($_GET);
+//var_dump($_SESSION['WINKELKAR']);
 //die();
 
 if ($checkout == true) {

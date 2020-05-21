@@ -1,8 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/admin/producten/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/producten/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/bestellingen/detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/bestellingen/detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inlog/aanmelden.php" beforeDir="false" afterPath="$PROJECT_DIR$/inlog/aanmelden.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/winkelkar/betalen.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/betalen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/winkelkar/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/winkelkar/toevoegen.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/toevoegen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/winkelkar/winkelkar.php" beforeDir="false" afterPath="$PROJECT_DIR$/winkelkar/winkelkar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Release" />
+        <entry key="$PROJECT_DIR$" value="CRUD_Producten" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,6 +79,7 @@
       <workItem from="1588008400422" duration="21738000" />
       <workItem from="1588067521744" duration="12118000" />
       <workItem from="1588108265294" duration="2594000" />
+      <workItem from="1590010980041" duration="14067000" />
     </task>
     <task id="LOCAL-00001" summary="BUSY: CRUD voor producten">
       <created>1588020148943</created>
@@ -138,6 +164,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
@@ -163,9 +201,20 @@
     </state>
     <state x="797" y="418" width="514" height="265" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1588189544996" />
     <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588110451134" />
-    <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1588030147385">
+    <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1590014999684">
       <screen x="3840" y="0" width="3840" height="2160" />
     </state>
-    <state x="3945" y="350" width="1979" height="1447" key="find.popup/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588030147385" />
+    <state x="3945" y="350" width="1979" height="1447" key="find.popup/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590014999684" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/winkelkar/toevoegen.php</url>
+          <line>53</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

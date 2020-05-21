@@ -30,7 +30,7 @@ $bestelbon_id = $_GET['bestelbon_id'];
 
 //connectie
 // Bestelbon ophalen uit database, samen met bestelbon details
-$sql = "SELECT tblbestelbons.id AS bestelbon_id, tblbestelbons.tblklant_KlantID AS KlantID, tblbestelbons.besteldatum, tblbestelstatus.status AS bestelstatus_naam, tblbestelstatus.id AS bestelstatus_id FROM tblbestelbons
+$sql = "SELECT tblbestelbons.id AS bestelbon_id, tblbestelbons.tblklant_KlantID AS KlantID, tblbestelbons.besteldatum, tblbestelstatus.status AS bestelstatus_naam, tblbestelstatus.id AS bestelstatus_id, tblbestelbons.korting_totaal AS korting FROM tblbestelbons
         INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
         WHERE tblbestelbons.id = {$bestelbon_id}";
 $bestelbon = $dbh->query($sql);
@@ -152,7 +152,7 @@ $levergegevens = $levergegevens->fetchAll()[0];
         </div>
         <div class="row">
             <div class="col-12">
-                <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
+                <h5>Totaalbedrag: <?php echo $totaal; ?> EUR ---> Totaalbedrag met korting: <?php echo $totaal - $bestelgegevens['korting']; ?> EUR</h5><br>
             </div>
             <div>
                 <a class="btn btn-info" href="<?php echo SITE_URL; ?>/admin/bestellingen/index.php">Terug</a>

@@ -41,13 +41,11 @@ require('../config.php');
 $producten = array();
 $totaal = 0;
 
-
 $sql = "SELECT ProductID, Merchnaam,ProductPrijs, foto FROM tblproduct WHERE ProductID=:prodId";
 
 $statement = $dbh->prepare($sql);
 
 $winkelkar = $_SESSION['WINKELKAR'];
-
 
 foreach ($winkelkar as $artikel) {
     $Aantal = $artikel['Aantal'];
@@ -142,7 +140,6 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                         </table>
                 </ul>
 
-
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Factuur gegevens</h4>
@@ -205,12 +202,12 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="cc-name">Naam op de kaart</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="Jan Smets" required>
+                            <input type="text" class="form-control" id="cc-name" placeholder="Jan Smets" value="Jan Smets" name="naamkaart" required>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="cc-number">Kaartnummer</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="1234 1234 1234 1234"
+                            <input type="text" class="form-control" id="cc-number" placeholder="1234 1234 1234 1234" value="1234 1234" name="kaartnr"
                                    required>
                         </div>
                     </div>
@@ -218,12 +215,12 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="Vervaldatum">Vervaldatum</label>
-                            <input type="text" class="form-control" id="Vervaldatum" placeholder="06/22" required>
+                            <input type="text" class="form-control" id="Vervaldatum" placeholder="06/22" value="06/22" name="vervaldatum" required>
                         </div>
 
                         <div class="col-md-3 mb-3" id="vak1">
                             <label for="CVC">CVC</label>
-                            <input name="CVC" type="text" class="form-control" id="CVC" placeholder="123" required>
+                            <input name="CVC" type="text" class="form-control" id="CVC" placeholder="123" value="123" required>
                         </div>
                     </div>
 

@@ -7,11 +7,15 @@ if (isset($_SESSION['KlantID'])) {
     $klant_id = $_SESSION['KlantID'];
 
     // Bestelbon nummer, Klanten nummer, Klanten naam, besteldatum en manueel klikbare link naar bestelling details maken
-    $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status FROM tblbestelbons
+    $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status, tblbestelbons.korting_totaal FROM tblbestelbons
         INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID
         INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
         WHERE tblklant_KlantID = {$klant_id}";
     $overzichtbestelbons = $dbh->query($sql);
+//
+//    var_dump($overzichtbestelbons->fetchAll());
+//    die();
+
 }
 
 ?>
@@ -278,6 +282,7 @@ require('../Includes/navbar.php'); ?>
 
                                     <?php
                                     $totaal += $content['subtotaal'];
+                                    $korting_totaal = $bestelbon['korting_totaal'];
                                 }
                                 ?>
 
@@ -285,7 +290,7 @@ require('../Includes/navbar.php'); ?>
                             </table>
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
+                                    <h5>Bedrag: <?php echo $totaal; ?> EUR  ---> Totalaalbedrag inclusief korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5><br>
                                 </div>
 
                             </div>
