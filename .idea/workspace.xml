@@ -20,8 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9dbbc9d-4275-42cb-9a80-4e6933adec76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inlog/aanmelden.php" beforeDir="false" afterPath="$PROJECT_DIR$/inlog/aanmelden.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <workItem from="1588067521744" duration="12118000" />
       <workItem from="1588108265294" duration="2594000" />
       <workItem from="1590010980041" duration="19473000" />
-      <workItem from="1590170032912" duration="2975000" />
+      <workItem from="1590170032912" duration="3673000" />
     </task>
     <task id="LOCAL-00001" summary="BUSY: CRUD voor producten">
       <created>1588020148943</created>
@@ -187,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590106087626</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="DONE: Layout change voor detail bestellingen eindgebruikers&#10;TODO: Leveringsadres toevoegen aan detail bestellingen voor eindgebruikers!">
+      <created>1590173943867</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590173943867</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,19 +227,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="DONE: Layout change voor detail bestellingen eindgebruikers&#10;TODO: Leveringsadres toevoegen aan detail bestellingen voor eindgebruikers!" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1590106087585">
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2" timestamp="1590173943770">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
-    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590106087585" />
+    <state x="1479" y="638" width="1238" height="917" key="CommitChangelistDialog2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590173943770" />
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor" timestamp="1588014768767">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
     <state x="1445" y="728" width="1022" height="737" key="SettingsEditor/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1588014768767" />
-    <state x="1551" y="829" width="514" height="265" key="Vcs.Push.Dialog.v2" timestamp="1590106089150">
+    <state x="1551" y="829" width="514" height="265" key="Vcs.Push.Dialog.v2" timestamp="1590173947545">
       <screen x="72" y="27" width="3768" height="2133" />
     </state>
     <state x="797" y="418" width="514" height="265" key="Vcs.Push.Dialog.v2/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1588189544996" />
-    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590106089150" />
+    <state x="1551" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.3768.2133/3840.0.3840.2160@72.27.3768.2133" timestamp="1590173947545" />
     <state x="3945" y="350" width="1979" height="1447" key="find.popup" timestamp="1590014999684">
       <screen x="3840" y="0" width="3840" height="2160" />
     </state>
