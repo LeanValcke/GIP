@@ -213,8 +213,21 @@ require('../Includes/navbar.php'); ?>
                     <?php
                     if (isset($_SESSION['KlantID'])) {
                         foreach ($overzichtbestelbons as $bestelbon) {
+                            // Artikels ophalen voor een specifieke $bestelbon['id']
+                            $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
+                                        INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
+                                        WHERE tblbestelbons_id = {$bestelbon['id']}";
+                            $bestelbonContent = $dbh->query($sql);
+
+                            $calc_totalen = $dbh->query($sql);
+                            $totaal = 0;
+                            foreach ($calc_totalen as $calc_totaal) {
+
+                                $totaal += $calc_totaal['subtotaal'];
+                                $korting_totaal = $bestelbon['korting_totaal'];
+                            }
                             ?>
-                            <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
+                            <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;margin-bottom: 0px;">
                                 <thead>
 
                                 </thead>
@@ -224,18 +237,20 @@ require('../Includes/navbar.php'); ?>
                                     <td>Besteldatum: <?php echo $bestelbon['besteldatum']; ?></td>
                                     <td>Status van uw bestelling: <?php echo $bestelbon['status']; ?></td>
                                 </tr>
+                                  <td></td>
+                                  <td>Leveringsadres gegevens:<br>
+                                    <?php
+
+
+                                    ?>
+                                  </td>
+                                  <td>Betalingsgegevens:
+
+                                    <h5>Bedrag: <?php echo $totaal; ?> EUR  ---> Totalaalbedrag inclusief korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5><br>
+
+                                  </td>
                                 </tbody>
                             </table>
-
-                            <?php
-                            // Artikels ophalen voor een specifieke $bestelbon['id']
-                            $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
-                                        INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
-                                        WHERE tblbestelbons_id = {$bestelbon['id']}";
-                            $bestelbonContent = $dbh->query($sql);
-
-                            $totaal = 0;
-                            ?>
 
                             <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
                                 <thead>
@@ -281,8 +296,7 @@ require('../Includes/navbar.php'); ?>
                                     </tr>
 
                                     <?php
-                                    $totaal += $content['subtotaal'];
-                                    $korting_totaal = $bestelbon['korting_totaal'];
+
                                 }
                                 ?>
 
@@ -290,7 +304,7 @@ require('../Includes/navbar.php'); ?>
                             </table>
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Bedrag: <?php echo $totaal; ?> EUR  ---> Totalaalbedrag inclusief korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5><br>
+
                                 </div>
 
                             </div>
