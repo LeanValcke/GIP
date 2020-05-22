@@ -7,11 +7,15 @@ if (isset($_SESSION['KlantID'])) {
     $klant_id = $_SESSION['KlantID'];
 
     // Bestelbon nummer, Klanten nummer, Klanten naam, besteldatum en manueel klikbare link naar bestelling details maken
-    $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status FROM tblbestelbons
+    $sql = "SELECT tblbestelbons.id, tblklant_KlantID, tblklant.Naam, tblbestelbons.besteldatum, tblbestelstatus.status, tblbestelbons.korting_totaal FROM tblbestelbons
         INNER JOIN tblklant ON tblbestelbons.tblklant_KlantID = tblklant.KlantID
         INNER JOIN tblbestelstatus ON tblbestelstatus.id = tblbestelbons.status
         WHERE tblklant_KlantID = {$klant_id}";
     $overzichtbestelbons = $dbh->query($sql);
+//
+//    var_dump($overzichtbestelbons->fetchAll());
+//    die();
+
 }
 
 ?>
@@ -209,8 +213,28 @@ require('../Includes/navbar.php'); ?>
                     <?php
                     if (isset($_SESSION['KlantID'])) {
                         foreach ($overzichtbestelbons as $bestelbon) {
+                            // Artikels ophalen voor een specifieke $bestelbon['id']
+                            $sql = "SELECT tblbestelbons_id, tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal
+                                        FROM tblbestelbons_tblproduct
+                                        INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
+                                        WHERE tblbestelbons_tblproduct.tblbestelbons_id = {$bestelbon['id']}";
+                            $bestelbonContent = $dbh->query($sql);
+
+                            $calc_totalen = $dbh->query($sql);
+                            $totaal = 0;
+                            foreach ($calc_totalen as $calc_totaal) {
+
+                                $totaal += $calc_totaal['subtotaal'];
+                                $korting_totaal = $bestelbon['korting_totaal'];
+                            }
+
+                            $sql_bestelbonleveringsgegevens = "SELECT * from tblleveringsadressen WHERE tblbestelbons_id = {$bestelbon['id']}";
+                            $bestelbonleveringsgegevens = $dbh->query($sql_bestelbonleveringsgegevens);
+
+                            $leveringsgegevens = $bestelbonleveringsgegevens->fetch();
+
                             ?>
-                            <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
+                            <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;margin-bottom: 0px;">
                                 <thead>
 
                                 </thead>
@@ -220,18 +244,29 @@ require('../Includes/navbar.php'); ?>
                                     <td>Besteldatum: <?php echo $bestelbon['besteldatum']; ?></td>
                                     <td>Status van uw bestelling: <?php echo $bestelbon['status']; ?></td>
                                 </tr>
+                                <td class="align-bottom"><b>Details Bestelling:</b></td>
+                                <td><b>Leveringsadres gegevens:</b><br><br>
+                                    <?php
+                                      echo $leveringsgegevens['naam'] . "<br>";
+                                      echo $leveringsgegevens['adres1'] . "<br>";
+                                      echo $leveringsgegevens['adres2'] . "<br>";
+                                      echo $leveringsgegevens['postcode'] . " ";
+                                      echo $leveringsgegevens['gemeente'] . "<br>";
+                                      echo $leveringsgegevens['land'] . "<br>";
+                                    ?>
+                                  </td>
+                                  <td><b>Betalingsgegevens:</b>
+                                      <?php
+                                        echo $leveringsgegevens['betaalmethode'] . "<br>";
+                                        echo "Naam kaart: " . $leveringsgegevens['naamkaart'] . "<br>";
+                                        echo "Kaart nr: " . $leveringsgegevens['kaartnr'] . "<br>";
+                                        echo "Vervaldatum: " . $leveringsgegevens['vervaldatum'] . "<br>";
+                                        echo "CVC: " . $leveringsgegevens['cvc'] . "<br><br>";
+                                      ?>
+                                    <h5>Subtotaal: <?php echo $totaal; ?> EUR<br>Totalaalbedrag (incl) korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5>
+                                  </td>
                                 </tbody>
                             </table>
-
-                            <?php
-                            // Artikels ophalen voor een specifieke $bestelbon['id']
-                            $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
-                                        INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
-                                        WHERE tblbestelbons_id = {$bestelbon['id']}";
-                            $bestelbonContent = $dbh->query($sql);
-
-                            $totaal = 0;
-                            ?>
 
                             <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;">
                                 <thead>
@@ -277,7 +312,7 @@ require('../Includes/navbar.php'); ?>
                                     </tr>
 
                                     <?php
-                                    $totaal += $content['subtotaal'];
+
                                 }
                                 ?>
 
@@ -285,7 +320,7 @@ require('../Includes/navbar.php'); ?>
                             </table>
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Totaalbedrag: <?php echo $totaal; ?> EUR</h5><br>
+
                                 </div>
 
                             </div>

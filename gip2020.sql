@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Gegenereerd op: 24 apr 2020 om 12:46
--- Serverversie: 5.7.9
--- PHP-versie: 5.6.16
+-- Host: localhost
+-- Generation Time: May 21, 2020 at 10:41 PM
+-- Server version: 5.7.29-0ubuntu0.18.04.1
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,112 +20,88 @@ SET time_zone = "+00:00";
 --
 -- Database: `gip2020`
 --
-CREATE DATABASE IF NOT EXISTS `gip2020` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gip2020`;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblbestelbons`
+-- Table structure for table `tblbestelbons`
 --
 
-DROP TABLE IF EXISTS `tblbestelbons`;
-CREATE TABLE IF NOT EXISTS `tblbestelbons` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblbestelbons` (
+  `id` int(11) NOT NULL,
   `tblklant_KlantID` int(11) NOT NULL,
   `besteldatum` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `korting_totaal` decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblbestelbons`
+-- Dumping data for table `tblbestelbons`
 --
 
-INSERT INTO `tblbestelbons` (`id`, `tblklant_KlantID`, `besteldatum`, `status`) VALUES
-(1, 8, '2020-04-13 23:39:32', 5),
-(2, 2, '2020-04-13 23:39:32', 3),
-(3, 8, '2020-04-24 14:28:02', 1),
-(4, 8, '2020-04-24 14:30:23', 1);
+INSERT INTO `tblbestelbons` (`id`, `tblklant_KlantID`, `besteldatum`, `status`, `korting_totaal`) VALUES
+(131, 8, '2020-05-21 22:39:34', 1, '6.00');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblbestelbons_tblproduct`
+-- Table structure for table `tblbestelbons_tblproduct`
 --
 
-DROP TABLE IF EXISTS `tblbestelbons_tblproduct`;
-CREATE TABLE IF NOT EXISTS `tblbestelbons_tblproduct` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblbestelbons_tblproduct` (
+  `id` int(11) NOT NULL,
   `tblbestelbons_id` int(11) NOT NULL,
   `tblproduct_ProductID` int(11) NOT NULL,
   `aantal` int(11) NOT NULL,
   `eenheidsprijs` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `korting` decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblbestelbons_tblproduct`
+-- Dumping data for table `tblbestelbons_tblproduct`
 --
 
-INSERT INTO `tblbestelbons_tblproduct` (`id`, `tblbestelbons_id`, `tblproduct_ProductID`, `aantal`, `eenheidsprijs`) VALUES
-(1, 1, 3, 2, '10.50'),
-(2, 1, 4, 1, '15.20'),
-(5, 1, 6, 2, '32.00'),
-(6, 1, 7, 1, '42.00'),
-(9, 2, 8, 3, '50.00'),
-(10, 2, 9, 1, '23.20'),
-(13, 2, 10, 1, '2.60'),
-(14, 3, 22, 1, '0.00'),
-(15, 4, 10, 1, '0.00'),
-(16, 4, 23, 1, '0.00');
+INSERT INTO `tblbestelbons_tblproduct` (`id`, `tblbestelbons_id`, `tblproduct_ProductID`, `aantal`, `eenheidsprijs`, `korting`) VALUES
+(67, 131, 40, 3, '40.00', '0.00');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblbestelling`
+-- Table structure for table `tblbestelling`
 --
 
-DROP TABLE IF EXISTS `tblbestelling`;
-CREATE TABLE IF NOT EXISTS `tblbestelling` (
+CREATE TABLE `tblbestelling` (
   `BonID` int(11) NOT NULL,
   `Aantal` int(11) DEFAULT NULL,
-  `Datum` datetime DEFAULT NULL,
-  PRIMARY KEY (`BonID`),
-  KEY `KlantID` (`Aantal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Datum` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblbestellingproduct`
+-- Table structure for table `tblbestellingproduct`
 --
 
-DROP TABLE IF EXISTS `tblbestellingproduct`;
-CREATE TABLE IF NOT EXISTS `tblbestellingproduct` (
+CREATE TABLE `tblbestellingproduct` (
   `BonID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
-  `Merchnaam` varchar(255) DEFAULT NULL,
-  `Prijs` int(30) NOT NULL,
-  PRIMARY KEY (`BonID`,`ProductID`),
-  KEY `Product` (`ProductID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Merchnaam` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Prijs` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblbestelstatus`
+-- Table structure for table `tblbestelstatus`
 --
 
-DROP TABLE IF EXISTS `tblbestelstatus`;
-CREATE TABLE IF NOT EXISTS `tblbestelstatus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(25) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `tblbestelstatus` (
+  `id` int(11) NOT NULL,
+  `status` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblbestelstatus`
+-- Dumping data for table `tblbestelstatus`
 --
 
 INSERT INTO `tblbestelstatus` (`id`, `status`) VALUES
@@ -137,20 +114,18 @@ INSERT INTO `tblbestelstatus` (`id`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblgameafdeling`
+-- Table structure for table `tblgameafdeling`
 --
 
-DROP TABLE IF EXISTS `tblgameafdeling`;
-CREATE TABLE IF NOT EXISTS `tblgameafdeling` (
-  `GameID` int(11) NOT NULL AUTO_INCREMENT,
-  `Gamenaam` varchar(25) NOT NULL,
-  `Beschrijving` text NOT NULL,
-  `foto` varchar(1000) NOT NULL,
-  PRIMARY KEY (`GameID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `tblgameafdeling` (
+  `GameID` int(11) NOT NULL,
+  `Gamenaam` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `Beschrijving` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `foto` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblgameafdeling`
+-- Dumping data for table `tblgameafdeling`
 --
 
 INSERT INTO `tblgameafdeling` (`GameID`, `Gamenaam`, `Beschrijving`, `foto`) VALUES
@@ -159,7 +134,7 @@ INSERT INTO `tblgameafdeling` (`GameID`, `Gamenaam`, `Beschrijving`, `foto`) VAL
 (3, 'GTA V', 'Werk je omhoog in de criminele wereld van Los Santos en Blaine County, maak voortdurend keuzes en speel op nieuwe manieren in de ultieme online ervaring.', 'hero-slider/gta.png'),
 (4, 'Minecraft', 'Minecraft is een Open World-game. Het kan gespeeld worden in de modus singleplayer of de modus multiplayer. Bij dit spel kan men in een uitgestrekt gebied kubusvormige objecten plaatsen op een rooster.', 'hero-slider/minecraft.png'),
 (5, 'CS:GO', 'Counter-Strike: Global Offensive is een first-person shooter game. Deze videogame zorgt voor een competitieve community. Zo werkt het spel met een rangsysteem. De speler kan een hogere rang halen door games te winnen tegen andere spelers', 'hero-slider/csgo.png'),
-(6, 'Assassins Creed', 'Assassin''s Creed is een actie-avontuur videogame. Maak geschiedenis als de legendarische Assassin', 'hero-slider/assassinscreed.png'),
+(6, 'Assassins Creed', 'Assassin\'s Creed is een actie-avontuur videogame. Maak geschiedenis als de legendarische Assassin', 'hero-slider/assassinscreed.png'),
 (7, 'Watch Dogs 2', 'Hacken is jouw wapen in de gigantische en dynamische open wereld van Watch Dogs 2. Ontdek een gigantische open wereld met ontzettend veel verschillende speelwijzen.', 'hero-slider/watchdogs.png'),
 (8, 'Call of Duty: BO', 'Call of Duty: Black Ops legt de lat hoog voor de multiplayer-modus met tactische gameplay en keuze uit verschillende personages, samen met de drie zombies ervaringen, het grootste aanbod dat ooit bij een lancering is uitgebracht.', 'hero-slider/callofduty.jpg'),
 (9, 'Mortal Kombat', 'Mortal Kombat X is een legendarische, veelgeprezen vechtgame. Het spel combineert een cinematische weergave met geheel nieuwe gameplay voor de meest brute Kombat ervaring ooit.', 'hero-slider/mortal.png');
@@ -167,26 +142,24 @@ INSERT INTO `tblgameafdeling` (`GameID`, `Gamenaam`, `Beschrijving`, `foto`) VAL
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblklant`
+-- Table structure for table `tblklant`
 --
 
-DROP TABLE IF EXISTS `tblklant`;
-CREATE TABLE IF NOT EXISTS `tblklant` (
-  `KlantID` int(11) NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(25) DEFAULT NULL,
-  `Telefoonnummer` varchar(20) DEFAULT NULL,
-  `Adres` text,
-  `Gemeente` text,
-  `Postcode` varchar(25) DEFAULT NULL,
+CREATE TABLE `tblklant` (
+  `KlantID` int(11) NOT NULL,
+  `Naam` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Telefoonnummer` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Adres` mediumtext COLLATE utf8_unicode_ci,
+  `Gemeente` mediumtext COLLATE utf8_unicode_ci,
+  `Postcode` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Admin` tinyint(1) NOT NULL DEFAULT '0',
-  `Gebruikersnaam` varchar(50) NOT NULL,
-  `Wachtwoord` varchar(255) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  PRIMARY KEY (`KlantID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `Gebruikersnaam` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Wachtwoord` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblklant`
+-- Dumping data for table `tblklant`
 --
 
 INSERT INTO `tblklant` (`KlantID`, `Naam`, `Telefoonnummer`, `Adres`, `Gemeente`, `Postcode`, `Admin`, `Gebruikersnaam`, `Wachtwoord`, `Email`) VALUES
@@ -194,23 +167,51 @@ INSERT INTO `tblklant` (`KlantID`, `Naam`, `Telefoonnummer`, `Adres`, `Gemeente`
 (2, 'Estelle Duhoux', '0497 535 828', 'Merelstraat 35', 'Bredene', '8450', 1, 'estie', '$2y$10$eOT4iNdKXEDjBLvd6LRKseajSpjJWbIIHRTfjiH2/duLIkkCedJcO', 'estelle.duhoux@hotmail.be'),
 (3, 'Lean Valcke', '0494651441', 'Aalscholverstraat 800', 'Bredene', '8450', 1, 'Leonardo', '$2y$10$97o4aylQ/AWauw.GE/8.a.H0L47b4SUrsis.2f0MQeHEWAh/cJnIq', 'leanvalcke@hotmail.com'),
 (7, 'z z', 'z', 'z', 'zz', 'z', 0, 'z', '$2y$10$cZZj5eZaqev7hQVGu1PSuOjuiGEEEBg5jqCTPedIf7MMi02HgIK9a', 'oke.be'),
-(8, 'Nicolas Ramoudt', '1234856789', 'Teststraat', 'Oostende', '8400', 1, 'smoetje', '$2y$10$TB61kAX96sk6P7nUqCacw.vQ51HvFgGaSEMi8cMidXQJef9JCshCW', 'test@smoetje.eu');
+(8, 'Nicolas Ramoudt', '1234856789', 'Teststraat', 'Oostende', '8400', 1, 'smoetje', '$2y$10$TB61kAX96sk6P7nUqCacw.vQ51HvFgGaSEMi8cMidXQJef9JCshCW', 'test@smoetje.eu'),
+(9, 'jef klak', '123456798', 'Kwakstraat', 'Brugge', '8000', 0, 'jefklak', '$2y$10$pmENwGCkmKFZZ1dy9Dr89.7e/l1GsHD1UeS8IKaAUx82zD0TLeANC', 'jefklak@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblmaat`
+-- Table structure for table `tblleveringsadressen`
 --
 
-DROP TABLE IF EXISTS `tblmaat`;
-CREATE TABLE IF NOT EXISTS `tblmaat` (
+CREATE TABLE `tblleveringsadressen` (
+  `id` int(11) NOT NULL,
+  `tblbestelbons_id` int(11) NOT NULL,
+  `naam` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `adres1` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `adres2` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `land` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gemeente` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `postcode` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `betaalmethode` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `naamkaart` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `kaartnr` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `vervaldatum` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cvc` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tblleveringsadressen`
+--
+
+INSERT INTO `tblleveringsadressen` (`id`, `tblbestelbons_id`, `naam`, `adres1`, `adres2`, `land`, `gemeente`, `postcode`, `betaalmethode`, `naamkaart`, `kaartnr`, `vervaldatum`, `cvc`) VALUES
+(13, 131, 'Nicolas Ramoudt', 'Teststraat', '', 'België', 'Oostende', '8400', 'visible', 'Jan Smets', '1234 1234', '06/22', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblmaat`
+--
+
+CREATE TABLE `tblmaat` (
   `ProductID` int(100) NOT NULL,
-  `Maat` varchar(20) NOT NULL,
-  UNIQUE KEY `ProductID` (`ProductID`,`Maat`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Maat` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblmaat`
+-- Dumping data for table `tblmaat`
 --
 
 INSERT INTO `tblmaat` (`ProductID`, `Maat`) VALUES
@@ -266,30 +267,28 @@ INSERT INTO `tblmaat` (`ProductID`, `Maat`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `tblproduct`
+-- Table structure for table `tblproduct`
 --
 
-DROP TABLE IF EXISTS `tblproduct`;
-CREATE TABLE IF NOT EXISTS `tblproduct` (
-  `ProductID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tblproduct` (
+  `ProductID` int(11) NOT NULL,
   `ProductPrijs` decimal(10,0) DEFAULT NULL,
   `ProductAantal` int(11) DEFAULT NULL,
-  `Gamenaam` varchar(25) DEFAULT NULL,
-  `Merchnaam` varchar(100) NOT NULL,
+  `Gamenaam` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Merchnaam` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `GameID` int(11) NOT NULL,
-  `foto` varchar(250) NOT NULL,
-  `Beschrijving` varchar(1000) NOT NULL,
-  PRIMARY KEY (`ProductID`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+  `foto` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `Beschrijving` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `tblproduct`
+-- Dumping data for table `tblproduct`
 --
 
 INSERT INTO `tblproduct` (`ProductID`, `ProductPrijs`, `ProductAantal`, `Gamenaam`, `Merchnaam`, `GameID`, `foto`, `Beschrijving`) VALUES
-(3, '10', 10, 'GTA V', 'GTA V Game', 3, 'merch/GTAVGame.jpg', 'Werk je omhoog in de criminele wereld van Los Santos en Blaine County, maak voortdurend keuzes en speel op nieuwe manieren in de ultieme online ervaring.'),
+(3, '10', 10, 'xxx', 'GTA V Game', 3, 'merch/bion1.jpg', 'Werk je omhoog in de criminele wereld van Los Santos en Blaine County, maak voortdurend keuzes en speel op nieuwe manieren in de ultieme online ervaring.'),
 (4, '50', 10, 'Minecraft', 'Minecraft Game', 4, 'merch/MinecraftGame.jpg', 'Minecraft is een Open World-game. Het kan gespeeld worden in de modus singleplayer of de modus multiplayer. Bij dit spel kan men in een uitgestrekt gebied kubusvormige objecten plaatsen op een rooster.'),
-(6, '15', 5, 'Assassins Creed', 'Assassins Creed Game', 6, 'merch/AssasinsCreedGame.jpg', 'Assassin''s Creed is een actie-avontuur videogame. Maak geschiedenis als de legendarische Assassin.'),
+(6, '15', 5, 'Assassins Creed', 'Assassins Creed Game', 6, 'merch/AssasinsCreedGame.jpg', 'Assassin\'s Creed is een actie-avontuur videogame. Maak geschiedenis als de legendarische Assassin.'),
 (7, '30', 30, 'Watch Dogs 2', 'Watch Dogs 2 Game', 7, 'merch/WatchDogs2Game.jpg', 'Hacken is jouw wapen in de gigantische en dynamische open wereld van Watch Dogs 2. Ontdek een gigantische open wereld met ontzettend veel verschillende speelwijzen.'),
 (8, '25', 10, 'Call of Duty: Black ops', 'COD Game', 8, 'merch/CODGame.jpg', 'Call of Duty: Black Ops legt de lat hoog voor de multiplayer-modus met tactische gameplay en keuze uit verschillende personages. Samen met de drie zombies ervaringen, het grootste aanbod dat ooit bij een lancering is uitgebracht.'),
 (9, '25', 25, 'Mortal Kombat', 'Mortal Combat Game', 9, 'merch/MortalKombatGame.jpg', 'Mortal Kombat X is een legendarische, veelgeprezen vechtgame. Het spel combineert een cinematische weergave met geheel nieuwe gameplay voor de meest brute Kombat ervaring ooit.'),
@@ -303,36 +302,159 @@ INSERT INTO `tblproduct` (`ProductID`, `ProductPrijs`, `ProductAantal`, `Gamenaa
 (26, '15', 15, 'Minecraft', 'Minecraft Muts ', 4, 'merch/MinecraftMutsGroen.jpg', 'De nieuwe warme Minecraft muts beschermt je tegen koud weer en wind. Niemand heeft zo een muts als jij.'),
 (27, '15', 25, 'CSGO', 'CSGO Tanktop ', 5, 'merch/CSGOTanktopZwart.jpg', 'Dit kan jouw nieuwe CS:GO tanktop zijn! Deze tanktop is enkel beschikbaar in het zwart en bestaat uit 100% katoen.'),
 (28, '3', 40, 'CSGO', 'CSGO Armband ', 5, 'merch/CSGOArmband.png', 'Heb jij altijd al een armband gewild dat is gebaseerd op CS:GO. Dan kan deze armband jou misschien overtuigen!'),
-(29, '50', 10, 'Assassins Creed', 'Assassins Creed Jas Blauw', 6, 'merch/AssassinsCreedJasBlauw.jpg', 'Dit kan jouw nieuwe Assassin''s Creed jas zijn! Deze jas is enkel beschikbaar in het zwart met blauw en bestaat uit 60% katoen en 40% polyester.'),
-(30, '45', 30, 'Assassins Creed', 'Assassins Creed Jas Grijs', 6, 'merch/AssassinsCreedJasZwart.jpg', 'Dit kan jouw nieuwe Assassin''s Creed jas zijn! Deze jas is enkel beschikbaar in het grijs met donkergrijs en gouden details en bestaat uit 60% katoen en 40% polyester.\n'),
+(29, '50', 10, 'Assassins Creed', 'Assassins Creed Jas Blauw', 6, 'merch/AssassinsCreedJasBlauw.jpg', 'Dit kan jouw nieuwe Assassin\'s Creed jas zijn! Deze jas is enkel beschikbaar in het zwart met blauw en bestaat uit 60% katoen en 40% polyester.'),
+(30, '45', 30, 'Assassins Creed', 'Assassins Creed Jas Grijs', 6, 'merch/AssassinsCreedJasZwart.jpg', 'Dit kan jouw nieuwe Assassin\'s Creed jas zijn! Deze jas is enkel beschikbaar in het grijs met donkergrijs en gouden details en bestaat uit 60% katoen en 40% polyester.\n'),
 (31, '50', 50, 'Watch Dogs 2', 'Watch Dogs 2 Trui Zwart', 7, 'merch/WatchDogs2Truizwart.jpg', 'Dit kan jouw nieuwe Watch Dogs trui zijn! Deze trui bevat een kap en een zak aan de voorkant. De trui bestaat uit 100% katoen.\n'),
 (32, '55', 10, 'Watch Dogs 2', 'Watch Dogs 2 Trui', 7, 'merch/WatchDogs2Trui.jpg', 'Dit kan jouw nieuwe Watch Dogs trui zijn! Deze trui bevat geen kap en bestaat uit 100% katoen.'),
 (33, '15', 20, 'Call of Duty: Black ops', 'COD Mok ', 8, 'merch/CODMokZwart.jpg', 'Heb jij altijd al een mok gewild van Call of Duty? Dan kan deze mok jou misschien overtuigen!'),
 (34, '25', 20, 'Call of Duty: Black ops', 'COD T-shirt ', 8, 'merch/CODTshirtZwart.jpg', 'Dit kan jouw nieuwe Call of Duty t-shirt zijn! Deze t-shirt is enkel beschikbaar in het zwart en bestaat uit 100% katoen.'),
 (35, '25', 20, 'Mortal Kombat', 'Mortal Kombat T-shirt', 9, 'merch/MortalKombattshirtgeel.jpg', 'Dit kan jouw nieuwe Mortal Kombat t-shirt zijn! Deze t-shirt is enkel beschikbaar in het geel met zwarte en grijze details. Deze t-shirt bestaat uit 100% katoen.\n'),
 (36, '15', 20, 'Mortal Kombat', 'Mortal Kombat Mok ', 9, 'merch/MortalKombatmokzwart.jpg', 'Heb jij altijd al een mok gewild van Mortal Kombat X? Dan kan deze mok jou misschien overtuigen!'),
-(37, '45', 150, 'Fortnite', 'Fortnite Trui ', 1, 'merch/FortniteTrui.jpg', 'Dit kan jouw nieuwe Fortnite trui zijn! Deze trui is enkel beschikbaar in het zwart en bevat het bekende Fortnite logo in het wit. Deze trui bevat ook een kap en een zak aan de voorkant. De trui bestaat volledig uit katoen.'),
-(38, '5', 150, 'Overwatch', 'Overwatch Dagboek', 2, 'Merch/Overwatchdagboek.png', 'Schrijf al je geheimen en dagelijkse belevenissen in dit leuke dagboekje van Overwatch! Op de cover van jouw toekomstige dagboek vind je alle helden uit Overwatch!'),
-(39, '15', 169, 'Overwatch', 'Junkrat Funkopop', 2, 'Merch/Overwatchjunkrat.png', 'Deze leuke Overwatch Junkrat Funko Pop figuur is ongeveer 9 cm groot en komt verpakt in een window display box.'),
-(40, '40', 21, 'Overwatch', 'Overwatch Trui', 2, 'Merch/Overwatchmercytrui.png', 'Met deze stijlvolle trui kun je je vrienden laten zien wat je favoriete held is in het populaire online spel. Deze trui is niet alleen in dezelfde kleur als het personage, maar het is ook versierd met de kenmerken van Mercy. Ook bevat deze trui een kap en een zak aan de voorkant.'),
-(41, '13', 120, 'Fortnite', 'Fortnite Muts', 1, 'Merch/Fortnitemuts.png', 'De nieuwe warme Fortnite muts beschermt je tegen koud weer en wind. Niemand heeft zo een muts als jij.\r\n'),
-(42, '15', 20, 'Fortnite', 'Drift Funkopop', 1, 'Merch/FortniteDrift.png', 'Deze leuke Fortnite Drift Funko Pop figuur is ongeveer 9 cm groot en komt verpakt in een window display box.');
+(37, '45', 150, 'Fortnite', 'Fortnite Trui ', 1, 'merch/fortnitetrui.png', 'Dit kan jouw nieuwe Fortnite trui zijn! Deze trui is enkel beschikbaar in het zwart en bevat het bekende Fortnite logo in het wit. Deze trui bevat ook een kap en een zak aan de voorkant. De trui bestaat volledig uit katoen.'),
+(38, '5', 150, 'Overwatch', 'Overwatch Dagboek', 2, 'merch/OverwatchDagboek.png', 'Schrijf al je geheimen en dagelijkse belevenissen in dit leuke dagboekje van Overwatch! Op de cover van jouw toekomstige dagboek vind je alle helden uit Overwatch!'),
+(39, '15', 169, 'Overwatch', 'Junkrat Funkopop', 2, 'merch/OverwatchJunkrat.png', 'Deze leuke Overwatch Junkrat Funko Pop figuur is ongeveer 9 cm groot en komt verpakt in een window display box.'),
+(40, '40', 21, 'Overwatch', 'Overwatch Trui', 2, 'merch/OverwatchMercyTrui.png', 'Met deze stijlvolle trui kun je je vrienden laten zien wat je favoriete held is in het populaire online spel. Deze trui is niet alleen in dezelfde kleur als het personage, maar het is ook versierd met de kenmerken van Mercy. Ook bevat deze trui een kap en een zak aan de voorkant.'),
+(41, '13', 120, 'Fortnite', 'Fortnite Muts', 1, 'merch/FortniteMuts.png', 'De nieuwe warme Fortnite muts beschermt je tegen koud weer en wind. Niemand heeft zo een muts als jij.\r\n'),
+(42, '15', 20, 'Fortnite', 'Drift Funkopop', 1, 'merch/FortniteDrift.png', 'Deze leuke Fortnite Drift Funko Pop figuur is ongeveer 9 cm groot en komt verpakt in een window display box.'),
+(43, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(44, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(45, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(46, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(47, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(49, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(50, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(51, '100', 20, 'niemand', 'niemand2', 3, 'dummy', 'The_quick_brown_fox_jumps'),
+(55, '10', 10, 'Biepenzwiep', 'qmskldjfmk', 2, 'no-image-available.png', 'q sdqsd f'),
+(56, '14', 2, 'aperitief', 'qsdqsdf', 3, 'merch/bion1.jpg', 'qsdfe');
 
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Beperkingen voor tabel `tblbestelling`
+-- Indexes for table `tblbestelbons`
+--
+ALTER TABLE `tblbestelbons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblbestelbons_tblproduct`
+--
+ALTER TABLE `tblbestelbons_tblproduct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblbestelling`
+--
+ALTER TABLE `tblbestelling`
+  ADD PRIMARY KEY (`BonID`),
+  ADD KEY `KlantID` (`Aantal`);
+
+--
+-- Indexes for table `tblbestellingproduct`
+--
+ALTER TABLE `tblbestellingproduct`
+  ADD PRIMARY KEY (`BonID`,`ProductID`),
+  ADD KEY `Product` (`ProductID`);
+
+--
+-- Indexes for table `tblbestelstatus`
+--
+ALTER TABLE `tblbestelstatus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblgameafdeling`
+--
+ALTER TABLE `tblgameafdeling`
+  ADD PRIMARY KEY (`GameID`);
+
+--
+-- Indexes for table `tblklant`
+--
+ALTER TABLE `tblklant`
+  ADD PRIMARY KEY (`KlantID`);
+
+--
+-- Indexes for table `tblleveringsadressen`
+--
+ALTER TABLE `tblleveringsadressen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tblmaat`
+--
+ALTER TABLE `tblmaat`
+  ADD UNIQUE KEY `ProductID` (`ProductID`,`Maat`) USING BTREE;
+
+--
+-- Indexes for table `tblproduct`
+--
+ALTER TABLE `tblproduct`
+  ADD PRIMARY KEY (`ProductID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tblbestelbons`
+--
+ALTER TABLE `tblbestelbons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+
+--
+-- AUTO_INCREMENT for table `tblbestelbons_tblproduct`
+--
+ALTER TABLE `tblbestelbons_tblproduct`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- AUTO_INCREMENT for table `tblbestelstatus`
+--
+ALTER TABLE `tblbestelstatus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tblgameafdeling`
+--
+ALTER TABLE `tblgameafdeling`
+  MODIFY `GameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tblklant`
+--
+ALTER TABLE `tblklant`
+  MODIFY `KlantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tblleveringsadressen`
+--
+ALTER TABLE `tblleveringsadressen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `tblproduct`
+--
+ALTER TABLE `tblproduct`
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tblbestelling`
 --
 ALTER TABLE `tblbestelling`
   ADD CONSTRAINT `bonlink` FOREIGN KEY (`BonID`) REFERENCES `tblbestellingproduct` (`BonID`);
 
 --
--- Beperkingen voor tabel `tblbestellingproduct`
+-- Constraints for table `tblbestellingproduct`
 --
 ALTER TABLE `tblbestellingproduct`
   ADD CONSTRAINT `Bon` FOREIGN KEY (`BonID`) REFERENCES `tblbestelling` (`BonID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
