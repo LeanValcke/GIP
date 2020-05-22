@@ -214,9 +214,10 @@ require('../Includes/navbar.php'); ?>
                     if (isset($_SESSION['KlantID'])) {
                         foreach ($overzichtbestelbons as $bestelbon) {
                             // Artikels ophalen voor een specifieke $bestelbon['id']
-                            $sql = "SELECT tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal FROM tblbestelbons_tblproduct
+                            $sql = "SELECT tblbestelbons_id, tblproduct_ProductID, Gamenaam, aantal, eenheidsprijs, aantal*eenheidsprijs AS subtotaal
+                                        FROM tblbestelbons_tblproduct
                                         INNER JOIN tblproduct ON tblproduct.ProductID = tblbestelbons_tblproduct.tblproduct_ProductID
-                                        WHERE tblbestelbons_id = {$bestelbon['id']}";
+                                        WHERE tblbestelbons_tblproduct.tblbestelbons_id = {$bestelbon['id']}";
                             $bestelbonContent = $dbh->query($sql);
 
                             $calc_totalen = $dbh->query($sql);
@@ -226,6 +227,12 @@ require('../Includes/navbar.php'); ?>
                                 $totaal += $calc_totaal['subtotaal'];
                                 $korting_totaal = $bestelbon['korting_totaal'];
                             }
+
+                            $sql_bestelbonleveringsgegevens = "SELECT * from tblleveringsadressen WHERE tblbestelbons_id = {$bestelbon['id']}";
+                            $bestelbonleveringsgegevens = $dbh->query($sql_bestelbonleveringsgegevens);
+
+                            $leveringsgegevens = $bestelbonleveringsgegevens->fetch();
+
                             ?>
                             <table id="overzichtTabel" class="table table-striped table-bordered" style="width:100%;margin-bottom: 0px;">
                                 <thead>
@@ -237,17 +244,26 @@ require('../Includes/navbar.php'); ?>
                                     <td>Besteldatum: <?php echo $bestelbon['besteldatum']; ?></td>
                                     <td>Status van uw bestelling: <?php echo $bestelbon['status']; ?></td>
                                 </tr>
-                                  <td></td>
-                                  <td>Leveringsadres gegevens:<br>
+                                <td class="align-bottom"><b>Details Bestelling:</b></td>
+                                <td><b>Leveringsadres gegevens:</b><br><br>
                                     <?php
-
-
+                                      echo $leveringsgegevens['naam'] . "<br>";
+                                      echo $leveringsgegevens['adres1'] . "<br>";
+                                      echo $leveringsgegevens['adres2'] . "<br>";
+                                      echo $leveringsgegevens['postcode'] . " ";
+                                      echo $leveringsgegevens['gemeente'] . "<br>";
+                                      echo $leveringsgegevens['land'] . "<br>";
                                     ?>
                                   </td>
-                                  <td>Betalingsgegevens:
-
-                                    <h5>Bedrag: <?php echo $totaal; ?> EUR  ---> Totalaalbedrag inclusief korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5><br>
-
+                                  <td><b>Betalingsgegevens:</b>
+                                      <?php
+                                        echo $leveringsgegevens['betaalmethode'] . "<br>";
+                                        echo "Naam kaart: " . $leveringsgegevens['naamkaart'] . "<br>";
+                                        echo "Kaart nr: " . $leveringsgegevens['kaartnr'] . "<br>";
+                                        echo "Vervaldatum: " . $leveringsgegevens['vervaldatum'] . "<br>";
+                                        echo "CVC: " . $leveringsgegevens['cvc'] . "<br><br>";
+                                      ?>
+                                    <h5>Subtotaal: <?php echo $totaal; ?> EUR<br>Totalaalbedrag (incl) korting: <?php echo $totaal - $korting_totaal; ?> EUR</h5>
                                   </td>
                                 </tbody>
                             </table>
