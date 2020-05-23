@@ -41,13 +41,11 @@ require('../config.php');
 $producten = array();
 $totaal = 0;
 
-
 $sql = "SELECT ProductID, Merchnaam,ProductPrijs, foto FROM tblproduct WHERE ProductID=:prodId";
 
 $statement = $dbh->prepare($sql);
 
 $winkelkar = $_SESSION['WINKELKAR'];
-
 
 foreach ($winkelkar as $artikel) {
     $Aantal = $artikel['Aantal'];
@@ -142,10 +140,9 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                         </table>
                 </ul>
 
-
             </div>
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Factuur gegevens</h4>
+                <h4 class="mb-3">Factuur- & verzendgegevens)</h4>
                 <form class="needs-validation" novalidate action="betalen.php" method="POST">
                     <div class="row">
                         <div class="col-md-12 mb-8">
@@ -193,11 +190,12 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                     <div class="row">
                         <div class="col-md-5 mb-3">
 
-                            <select name="gekozenbetaalmiddel" class="custom-select d-block w-100" id="Betaalmethode "
-                                    required onchange=button("vak1",this.value)>
-                                <option value="visible">Kredietkaart</option>
-                                <option value="hidden">Bancontact</option>
-
+<!--                            <select name="gekozenbetaalmiddel" class="custom-select d-block w-100" id="Betaalmethode "-->
+<!--                                  required onchange=button("vak1",this.cvcstatus)>-->
+                            <select name="gekozenbetaalmiddel" class="custom-select d-block w-100" id="Betaalmethode"
+                                    required onchange=checkCard(this.value)>
+                                <option value="Kredietkaart">Kredietkaart</option>
+                                <option value="Bancontact">Bancontact</option>
                             </select>
                         </div>
                     </div>
@@ -205,12 +203,12 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="cc-name">Naam op de kaart</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="Jan Smets" required>
+                            <input type="text" class="form-control" id="cc-name" placeholder="Naam kaarthouder" name="naamkaart" required>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="cc-number">Kaartnummer</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="1234 1234 1234 1234"
+                            <input type="text" class="form-control" id="cc-number" placeholder="xxxx xxxx xxxx xxxx" name="kaartnr"
                                    required>
                         </div>
                     </div>
@@ -218,12 +216,12 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label for="Vervaldatum">Vervaldatum</label>
-                            <input type="text" class="form-control" id="Vervaldatum" placeholder="06/22" required>
+                            <input type="text" class="form-control" id="Vervaldatum" placeholder="xx/xx" name="vervaldatum" required>
                         </div>
 
                         <div class="col-md-3 mb-3" id="vak1">
                             <label for="CVC">CVC</label>
-                            <input name="CVC" type="text" class="form-control" id="CVC" placeholder="123" required>
+                            <input name="CVC" type="text" class="form-control" id="CVC" placeholder="xxx" required>
                         </div>
                     </div>
 
@@ -275,13 +273,29 @@ if ($_SESSION['LOGIN_OK'] == true) { ?>
             }, false);
         })();
 
-        function button(vakje, zichtbaarheid) {
-            var hidden = "hidden";
-            document.getElementById(vakje).style.visibility = zichtbaarheid;
-            if (zichtbaarheid == hidden) {
-                document.getElementById("CVC").removeAttribute('required')
+        // function button(vakje, zichtbaarheid) {
+        //     var hidden = "hidden";
+        //     document.getElementById(vakje).style.visibility = zichtbaarheid;
+        //     if (zichtbaarheid == hidden) {
+        //         document.getElementById("CVC").removeAttribute('required')
+        //     }
+        // }
+
+        function checkCard(cardType) {
+            let cvcDiv = document.querySelector('#vak1')
+            let cvc = document.querySelector('#vak1')
+            // console.log(cvc)
+            if(cardType !== "Kredietkaart") {
+                // console.log("Kredietkaart unselected!")
+                cvc.removeAttribute('required')
+                cvcDiv.style.display = "none"
+            } else {
+                // console.log("Kredietkaart selected!")
+                cvc.attributes.required = "required"
+                cvcDiv.style.display = "block"
             }
         }
+
     </script>
     </body>
 <?php } else {

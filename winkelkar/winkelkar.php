@@ -41,7 +41,7 @@ $merchproducten = $dbh->query($sql);
     $producten = array();
     $totaal = 0;
 
-    $sql = " SELECT ProductID, Merchnaam,ProductPrijs, foto FROM tblproduct WHERE ProductID=:prodId";
+    $sql = " SELECT ProductID, Merchnaam, ProductPrijs, foto FROM tblproduct WHERE ProductID=:prodId";
     $statement = $dbh->prepare($sql);
 
     $winkelkar = $_SESSION['WINKELKAR'];
@@ -63,6 +63,7 @@ $merchproducten = $dbh->query($sql);
             $totaal += $product['PROD_TOTAAL'];
         }
     }
+
     ?>
 </head>
 
@@ -135,6 +136,8 @@ require('../Includes/navbar.php');
         $kortingbedrag = 0;
         $totaalbedrag = $totaal;
     }
+
+    $_SESSION['KORTING'] = $kortingbedrag;
 
     $sql = "SELECT ProductID, Merchnaam, foto FROM tblproduct order by ProductID desc limit 2";
     $promos = $dbh->query($sql);
