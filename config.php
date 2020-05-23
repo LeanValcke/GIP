@@ -22,7 +22,7 @@ $protocol = $_SERVER['PROTOCOL'] = isset($_SERVER['HTTPS']) && !empty($_SERVER['
 //die();
 
 
-define( 'URL_SUBFOLDER', '/gip_sourcecontrolled'); //  Vul hier in de plaats '/GIP7' in, postfix wordt dan overal gelijk gebruikt in je project door PHP constante URL_SUBFOLDER
+define( 'URL_SUBFOLDER', ''); //  Vul hier in de plaats '/GIP7' in, postfix wordt dan overal gelijk gebruikt in je project door PHP constante URL_SUBFOLDER
 define( 'SITE_URL', $protocol.'://'.$host.URL_SUBFOLDER );
 
 // = de url die we moeten ingeven in de browser om op deze website uit te komen

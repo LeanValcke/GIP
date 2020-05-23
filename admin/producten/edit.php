@@ -346,35 +346,45 @@ require(SITE_DIR . '/Includes/navbar.php');
 
             <div class="form-group">
               <input type="file" class="custom-file-input" id="customFile" accept=".jpg,.jpeg,.png,.gif"
-                     name="foto">
+                     name="foto" >
               <label class="btn btn-info" class="custom-file-label" for="customFile">Kies foto</label> <p>Max grootte aanbevolen: 500Kb</p>
             </div>
 
             <script>
                 // jQuery / JS om het stukje foto te visualiseren (opladen zal gebeuren in de volgende $_POST tijdens het bewaren
                 $(".custom-file-input").on("change", function () {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                    var input = document.getElementById("customFile");
-                    var fReader = new FileReader();
-                    fReader.readAsDataURL(input.files[0]);
-                    console.log(fReader);
-                    fReader.onloadend = function (event) {
-                        var img = document.getElementById("foto");
-                        img.src = event.target.result;
-                    }
+                    let bewaarknop = document.querySelector("#saveform");
+
+                    if(this.files[0].size > 500000){
+                        alert("Foto is te groot! Maximum 500Kb grootte toegelaten, kies een geldige foto vooraleer te bewaren!");
+                        bewaarknop.disabled = true;
+                        return;
+                    } else {
+                        bewaarknop.disabled = false;
+                        var fileName = $(this).val().split("\\").pop();
+                        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        var input = document.getElementById("customFile");
+                        var fReader = new FileReader();
+                        fReader.readAsDataURL(input.files[0]);
+                        console.log(fReader);
+                        fReader.onloadend = function (event) {
+                            var img = document.getElementById("foto");
+                            img.src = event.target.result;
+                        }
+                    };
                 });
             </script>
 
           </div>
         </div>
 
-        <button class="btn btn-info" name="saveform" value="true">Bewaren</button>
+        <button class="btn btn-info" name="saveform" id="saveform" value="true">Bewaren</button>
 
           <?php if ($recordsaved) { ?>
             <button class="btn btn-info" name="succes" value="true">Terug naar overzicht</button>
           <?php } else { ?>
-            <button class="btn btn-info" name="annuleren" value="true">Annuleren</button>
+              <a class="btn btn-info" href="<?php echo SITE_URL; ?>/admin/producten/index.php">Annuleren</a>
+<!--            <button class="btn btn-info" name="annuleren" value="true">Annuleren</button>-->
           <?php } ?>
       </form>
     </div>
